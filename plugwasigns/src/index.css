@@ -1,0 +1,102 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  /* ── Core backgrounds — replaced pure black with deep navy blue from card ── */
+  --color-primary:       #09092E;
+  --color-primary-light: #12124A;
+
+  /* ── Brand yellow — unchanged ── */
+  --color-accent:        #E3FF00;
+  --color-accent-hover:  #cce600;
+
+  /* ── Royal blue from the business card stripe ── */
+  --color-blue:          #2547D8;
+  --color-blue-light:    #4D6FEF;
+  --color-blue-dark:     #1A34B0;
+
+  /* ── Typography ── */
+  --font-sans:    "Inter", sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-primary text-gray-100 font-sans antialiased overflow-x-hidden selection:bg-blue selection:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  /* Yellow glow — unchanged */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(227, 255, 0, 0.55);
+  }
+
+  /* Blue glow — new */
+  .text-blue-glow {
+    text-shadow: 0 0 22px rgba(37, 71, 216, 0.7);
+  }
+
+  /* Glass — subtle blue tint on border */
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-blue/20;
+  }
+
+  /* Blue-tinted glass variant for cards */
+  .glass-blue {
+    @apply bg-blue/8 backdrop-blur-md border border-blue/30;
+  }
+
+  /* Shine sweep — add to <button> or <Link> */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-shine::after {
+    content: "";
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -80%;
+    width: 40%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+    transform: skewX(-18deg);
+  }
+  .btn-shine:hover::after {
+    animation: shine 0.55s ease forwards;
+  }
+
+  /* Card lift helper */
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 28px 56px rgba(37, 71, 216, 0.22), 0 0 0 1px rgba(37, 71, 216, 0.15);
+  }
+}
+
+/* ── Shine sweep for buttons ── */
+@keyframes shine {
+  from { left: -80%; }
+  to   { left: 130%;  }
+}
+
+/* ── Subtle entrance float ── */
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@theme {
+  --animate-marquee: marquee 28s linear infinite;
+}
+
