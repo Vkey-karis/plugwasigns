@@ -14,7 +14,7 @@ export default function QuoteForm() {
     
     // IMPORTANT: Replace this with your actual Web3Forms Access Key
     // Get yours for free at: https://web3forms.com/
-    formData.append("access_key", "YOUR_WEB3FORMS_ACCESS_KEY_HERE");
+    formData.append("access_key", "437ecc7a-d080-4478-ab20-570911f10ba6");
     formData.append("subject", "New Quote Request from PlugWaSigns Website");
     formData.append("from_name", "PlugWaSigns Website");
 
