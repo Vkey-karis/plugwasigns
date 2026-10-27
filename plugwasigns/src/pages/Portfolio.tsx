@@ -1,12 +1,12 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight } from 'lucide-react';
-import { CATEGORIES, type PortfolioItem } from '../data/portfolio';
+import { type PortfolioItem } from '../data/portfolio';
 import { usePortfolio } from '../context/PortfolioContext';
 import { BUSINESS_CONFIG } from '../data/config';
 
 export default function Portfolio() {
-  const { items: portfolioItems } = usePortfolio();
+  const { items: portfolioItems, allDisplayCategories } = usePortfolio();
   const [filter, setFilter] = useState('ALL');
   const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
@@ -27,7 +27,7 @@ export default function Portfolio() {
 
         {/* Filters */}
         <div className="flex flex-wrap gap-3 mb-12">
-          {CATEGORIES.map(cat => (
+          {allDisplayCategories.map(cat => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}

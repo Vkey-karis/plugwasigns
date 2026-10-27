@@ -4,6 +4,7 @@ interface SyncOptions {
   token: string;
   repo: string; // e.g. "Vkey-karis/plugwasigns"
   branch: string; // e.g. "main"
+  categories: string[];
   items: PortfolioItem[];
   newImages: Array<{ filename: string; base64Content: string }>;
   commitMessage?: string;
@@ -84,6 +85,7 @@ export async function syncPortfolioToGitHub({
   token,
   repo,
   branch = 'main',
+  categories = [],
   items,
   newImages = [],
   commitMessage = 'admin: update portfolio content'
@@ -126,7 +128,11 @@ export async function syncPortfolioToGitHub({
     }
 
     // 2. Commit updated portfolio.json
-    const jsonString = JSON.stringify(items, null, 2);
+    const structuredPayload = {
+      categories,
+      items
+    };
+    const jsonString = JSON.stringify(structuredPayload, null, 2);
     const jsonBase64 = utf8ToBase64(jsonString);
 
     const primaryJsonPath = 'plugwasigns/src/data/portfolio.json';

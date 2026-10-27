@@ -12,33 +12,33 @@ export interface PortfolioItem {
   priority?: number;
 }
 
-export const CATEGORIES = [
-  "ALL",
-  "2D",
-  "3D",
-  "STICKERS",
-  "BRANDING",
-  "VEHICLE",
-  "LED",
-  "SHOP SIGNS",
-  "APPAREL",
-  "PRINT",
-  "DECOR",
-  "BANNERS"
-] as const;
+export interface PortfolioDataStructure {
+  categories: string[];
+  items: PortfolioItem[];
+}
 
-export const EDITABLE_CATEGORIES = [
-  "2D",
-  "3D",
-  "STICKERS",
-  "BRANDING",
-  "VEHICLE",
-  "LED",
-  "SHOP SIGNS",
-  "APPAREL",
-  "PRINT",
-  "DECOR",
-  "BANNERS"
-] as const;
+const rawData = portfolioData as any;
 
-export const PORTFOLIO: PortfolioItem[] = portfolioData as PortfolioItem[];
+export const DEFAULT_CATEGORIES: string[] = Array.isArray(rawData)
+  ? [
+      "2D",
+      "3D",
+      "STICKERS",
+      "BRANDING",
+      "VEHICLE",
+      "LED",
+      "SHOP SIGNS",
+      "APPAREL",
+      "PRINT",
+      "DECOR",
+      "BANNERS"
+    ]
+  : rawData.categories;
+
+export const CATEGORIES: string[] = ["ALL", ...DEFAULT_CATEGORIES];
+
+export const EDITABLE_CATEGORIES: string[] = DEFAULT_CATEGORIES;
+
+export const PORTFOLIO: PortfolioItem[] = Array.isArray(rawData)
+  ? (rawData as PortfolioItem[])
+  : (rawData.items as PortfolioItem[]);
