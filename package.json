@@ -1,0 +1,11 @@
+{
+  "name": "plugwasigns-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix plugwasigns run dev",
+    "build": "npm --prefix plugwasigns run build",
+    "preview": "npm --prefix plugwasigns run preview",
+    "lint": "npm --prefix plugwasigns run lint"
+  }
+}
