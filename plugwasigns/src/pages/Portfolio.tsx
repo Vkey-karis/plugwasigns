@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight } from 'lucide-react';
-import { PORTFOLIO, CATEGORIES } from '../data/portfolio';
+import { CATEGORIES, type PortfolioItem } from '../data/portfolio';
+import { usePortfolio } from '../context/PortfolioContext';
 import { BUSINESS_CONFIG } from '../data/config';
 
 export default function Portfolio() {
+  const { items: portfolioItems } = usePortfolio();
   const [filter, setFilter] = useState('ALL');
-  const [selectedProject, setSelectedProject] = useState<typeof PORTFOLIO[0] | null>(null);
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
-  const filteredProjects = filter === 'ALL' 
-    ? PORTFOLIO 
-    : PORTFOLIO.filter(p => p.category === filter);
+  const filteredProjects = useMemo(() => {
+    const list = filter === 'ALL' 
+      ? portfolioItems 
+      : portfolioItems.filter(p => p.category === filter);
+    return [...list].sort((a, b) => (b.priority ?? 0) - (a.priority ?? 0));
+  }, [filter, portfolioItems]);
 
   return (
     <div className="pt-32 pb-24 min-h-screen">

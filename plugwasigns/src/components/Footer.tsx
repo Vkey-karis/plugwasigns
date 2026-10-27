@@ -1,4 +1,4 @@
-﻿import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BUSINESS_CONFIG, NAVIGATION } from "../data/config";
 import { SERVICES } from "../data/services";
 import { Globe, Link2, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
@@ -119,6 +119,7 @@ export default function Footer() {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="#" className="hover:text-gray-400 transition-colors">Privacy Policy</Link>
             <Link to="#" className="hover:text-gray-400 transition-colors">Terms of Service</Link>
+            <Link to="/admin" className="hover:text-accent transition-colors font-mono text-[11px]">Admin</Link>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState, useEffect, type MouseEvent } from 'react';
+import { useRef, useCallback, useState, useEffect, useMemo, type MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -6,7 +6,7 @@ import {
   Store, Building2, Package, Calendar, Settings, Ruler, Layers, Wrench, Zap, Palette
 } from 'lucide-react';
 import { SERVICES } from '../data/services';
-import { PORTFOLIO } from '../data/portfolio';
+import { usePortfolio } from '../context/PortfolioContext';
 import AnimatedSignText from '../components/AnimatedSignText';
 
 const MARQUEE_ITEMS = [
@@ -23,14 +23,31 @@ const FLOATING_BADGES = [
   { label: '2D Signage',    Icon: Layout,    style: { bottom: '20%',right: '4%'  }, delay: 2.0 },
 ];
 
-
-const SAMPLE_IMAGES = [
+const FALLBACK_SAMPLE_IMAGES = [
   { src: '/work/raffine-sign.png', label: '3D LETTERS'    },
   { src: '/work/dazzle-3d.jpg', label: 'SHOP SIGNS'     },
   { src: '/work/neon-cocktail.jpg', label: 'LED SIGNS'      },
   { src: 'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80', label: 'VEHICLE WRAPS'  },
 ];
+
 export default function Home() {
+  const { items: portfolioItems } = usePortfolio();
+
+  const heroItems = useMemo(() => {
+    const heroes = portfolioItems.filter(p => p.isHero);
+    if (heroes.length > 0) {
+      return heroes.map(p => ({ src: p.image, label: p.category }));
+    }
+    return FALLBACK_SAMPLE_IMAGES;
+  }, [portfolioItems]);
+
+  const featuredItems = useMemo(() => {
+    const featured = portfolioItems.filter(p => p.isFeatured);
+    if (featured.length >= 4) return featured.slice(0, 4);
+    const nonFeatured = portfolioItems.filter(p => !p.isFeatured);
+    return [...featured, ...nonFeatured].slice(0, 4);
+  }, [portfolioItems]);
+
   const spotlightRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback((e: MouseEvent<HTMLElement>) => {
@@ -52,9 +69,9 @@ export default function Home() {
     return () => clearTimeout(t);
   }, []);
   useEffect(() => {
-    const id = setInterval(() => setCurrentSample(p => (p + 1) % SAMPLE_IMAGES.length), 3200);
+    const id = setInterval(() => setCurrentSample(p => (p + 1) % heroItems.length), 3200);
     return () => clearInterval(id);
-  }, []);
+  }, [heroItems.length]);
   return (
     <div>
       {/* Hero Section */}
@@ -181,8 +198,8 @@ export default function Home() {
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentSample}
-                    src={SAMPLE_IMAGES[currentSample].src}
-                    alt={SAMPLE_IMAGES[currentSample].label}
+                    src={heroItems[currentSample]?.src || heroItems[0]?.src}
+                    alt={heroItems[currentSample]?.label || 'Signage'}
                     className="w-full h-full object-cover"
                     initial={{ opacity: 0, scale: 1.05 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -196,12 +213,12 @@ export default function Home() {
 
                 {/* Category label */}
                 <div className="absolute bottom-3 left-3 bg-black/50 backdrop-blur-sm text-accent text-[9px] font-bold tracking-[0.2em] px-2.5 py-1 rounded-full border border-accent/40">
-                  {SAMPLE_IMAGES[currentSample].label}
+                  {heroItems[currentSample]?.label}
                 </div>
 
                 {/* Progress dots */}
                 <div className="absolute bottom-3.5 right-3 flex gap-1.5">
-                  {SAMPLE_IMAGES.map((_, i) => (
+                  {heroItems.map((_, i) => (
                     <button
                       key={i}
                       onClick={() => setCurrentSample(i)}
@@ -354,7 +371,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[350px]">
-            {PORTFOLIO.slice(0, 4).map((project, idx) => {
+            {featuredItems.map((project, idx) => {
               const isLarge1 = idx === 0;
               const isLarge2 = idx === 3;
               const spanClass = (isLarge1 || isLarge2) ? "md:col-span-2" : "md:col-span-1";
