@@ -11,12 +11,12 @@
     ],
     "isHero": true,
     "isFeatured": true,
-    "priority": 10
+    "priority": 9
   },
   {
     "id": "p2",
     "title": "Dazzle Interiors – 3D Facade Sign",
-    "category": "SHOP SIGNS",
+    "category": "3D",
     "image": "/work/dazzle-3d.jpg",
     "description": "Full storefront transformation with gold & chrome 3D raised lettering on a black Alucobond panel.",
     "services": [
@@ -30,7 +30,7 @@
   {
     "id": "p3",
     "title": "Raffine Hardware – Indoor Board Graphics",
-    "category": "BRANDING",
+    "category": "STICKERS",
     "image": "/work/raffine-board.png",
     "description": "Large-format printed board graphics for interior wall branding of a hardware store.",
     "services": [
@@ -44,7 +44,7 @@
   {
     "id": "p4",
     "title": "Luna – 2D Storefront Sign",
-    "category": "2D",
+    "category": "3D",
     "image": "/work/luna-sign.png",
     "description": "Sleek 2D signboard with gloss finish and custom script typography for an upscale lounge.",
     "services": [
