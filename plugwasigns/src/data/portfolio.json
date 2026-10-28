@@ -228,7 +228,7 @@
     {
       "id": "p16",
       "title": "Digital Pro Ltd – Roll-Up Banner",
-      "category": "BANNERS",
+      "category": "ROLLUP BANNERS/ TEARDROP",
       "image": "/work/digital-pro-banner.png",
       "description": "Professional full-colour roll-up banner for Digital Pro Ltd's Online SMIS examination platform, produced and printed in-house.",
       "services": [
@@ -323,7 +323,7 @@
     {
       "id": "b4",
       "title": "Circular LED Sign",
-      "category": "3D",
+      "category": "ROLLUP BANNERS/ TEARDROP",
       "image": "/work/3d-lit-circular-sign.jpeg",
       "description": "Illuminated 3D circular wall sign.",
       "services": [
@@ -441,7 +441,7 @@
     {
       "id": "b13",
       "title": "Delivery Bike Box",
-      "category": "BRANDING",
+      "category": "APPAREL BRANDING",
       "image": "/work/branding-delivery-bike-box.jpeg",
       "description": "Custom branded delivery bike box.",
       "services": [
@@ -793,7 +793,7 @@
     },
     {
       "id": "b40",
-      "title": "Embroidery Printing Sign",
+      "title": "Gilead Executive BarberShop 3D Sign",
       "category": "3D",
       "image": "/work/3d-embroidery-printing-sign.jpeg",
       "description": "3D illuminated embroidery printing sign.",
@@ -926,7 +926,7 @@
     {
       "id": "b50",
       "title": "Christian Church Directional",
-      "category": "2D",
+      "category": "BANNERS",
       "image": "/work/2d-christian-church-directional.jpeg",
       "description": "Directional 2D sign for Christian Church.",
       "services": [
@@ -964,13 +964,12 @@
     },
     {
       "id": "b53",
-      "title": "Gilead Barber Mirror",
-      "category": "3D",
+      "title": "Gilead Barber 2D Reception Sign",
+      "category": "2D",
       "image": "/work/3d-gilead-barber-mirror.jpeg",
       "description": "Backlit mirror sign for Gilead Barber Shop.",
       "services": [
-        "3D Signage",
-        "Decor"
+        "2D Reception Sign"
       ],
       "isHero": false,
       "isFeatured": false,
