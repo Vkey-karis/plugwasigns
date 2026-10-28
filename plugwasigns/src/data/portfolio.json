@@ -7,7 +7,7 @@
     "VEHICLE",
     "LED",
     "SHOP SIGNS",
-    "APPAREL",
+    "APPAREL BRANDING",
     "PRINT",
     "DECOR",
     "BANNERS",
@@ -102,7 +102,7 @@
     {
       "id": "p7",
       "title": "Custom Branded Hoodie – Hakuna Matata",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-hoodie-1.png",
       "description": "Custom screen-printed hoodie with a full-chest graphic design for a merchandise brand.",
       "services": [
@@ -116,7 +116,7 @@
     {
       "id": "p8",
       "title": "254 Kenyan – Apparel Branding",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-hoodie-2.jpg",
       "description": "Bold Kenyan-themed custom hoodie with heat transfer print for a local streetwear label.",
       "services": [
@@ -214,7 +214,7 @@
     {
       "id": "p15",
       "title": "Custom Sports Jerseys – Glitter Numbers",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/sports-jerseys.png",
       "description": "Custom sublimation-printed sports jerseys with glitter number transfers and personalised names for a local sports team.",
       "services": [
@@ -310,7 +310,7 @@
     {
       "id": "b3",
       "title": "Black Branded Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/printed-branded-black-hoodie.jpeg",
       "description": "Custom printed black hoodie.",
       "services": [
@@ -350,7 +350,7 @@
     {
       "id": "b6",
       "title": "Green Branded Hoodies",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-green-branded-hoodies.jpeg",
       "description": "Custom printed green hoodies.",
       "services": [
@@ -363,7 +363,7 @@
     {
       "id": "b7",
       "title": "Black & White Hoodies",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-white-black-branded-hoodies.jpeg",
       "description": "Matching branded hoodies.",
       "services": [
@@ -376,7 +376,7 @@
     {
       "id": "b8",
       "title": "Red Branded Caps",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-red-branded-caps.jpeg",
       "description": "Custom printed red baseball caps.",
       "services": [
@@ -389,7 +389,7 @@
     {
       "id": "b9",
       "title": "Maroon Branded Hoodies",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-maroon-branded-hoodies.jpeg",
       "description": "Custom printed maroon hoodies.",
       "services": [
@@ -467,7 +467,7 @@
     {
       "id": "b15",
       "title": "Black Branded Caps",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-black-branded-caps.jpeg",
       "description": "Custom embroidered/printed black caps.",
       "services": [
@@ -494,7 +494,7 @@
     {
       "id": "b17",
       "title": "Grey Branded Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-grey-branded-hoodie.jpeg",
       "description": "Custom grey branded hoodie.",
       "services": [
@@ -547,7 +547,7 @@
     {
       "id": "b21",
       "title": "Maroon Hoodie Logo",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-maroon-hoodie-logo.jpeg",
       "description": "Maroon hoodie with custom logo.",
       "services": [
@@ -586,7 +586,7 @@
     {
       "id": "b24",
       "title": "Grey Hoodie Back",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-grey-hoodie-back.jpeg",
       "description": "Grey hoodie with back print.",
       "services": [
@@ -638,7 +638,7 @@
     {
       "id": "b28",
       "title": "Blue Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-blue-hoodie.jpeg",
       "description": "Custom blue hoodie.",
       "services": [
@@ -651,7 +651,7 @@
     {
       "id": "b29",
       "title": "Mustard Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-mustard-hoodie.jpeg",
       "description": "Custom mustard yellow hoodie.",
       "services": [
@@ -664,7 +664,7 @@
     {
       "id": "b30",
       "title": "Grey Hoodie Front",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-grey-hoodie-front.jpeg",
       "description": "Grey hoodie front design.",
       "services": [
@@ -703,7 +703,7 @@
     {
       "id": "b33",
       "title": "White Polo Shirt",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-white-polo-shirt.jpeg",
       "description": "Branded white polo shirt.",
       "services": [
@@ -716,7 +716,7 @@
     {
       "id": "b34",
       "title": "Branded Apron",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-branded-apron.jpeg",
       "description": "Custom branded apron.",
       "services": [
@@ -729,7 +729,7 @@
     {
       "id": "b35",
       "title": "Grey Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-grey-hoodie.jpeg",
       "description": "Custom grey hoodie.",
       "services": [
@@ -742,7 +742,7 @@
     {
       "id": "b36",
       "title": "Navy Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-navy-hoodie.jpeg",
       "description": "Custom navy blue hoodie.",
       "services": [
@@ -755,7 +755,7 @@
     {
       "id": "b37",
       "title": "Black Hoodie Logo",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-black-hoodie-logo.jpeg",
       "description": "Black hoodie with custom logo.",
       "services": [
@@ -768,7 +768,7 @@
     {
       "id": "b38",
       "title": "Black Apron",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-black-apron.jpeg",
       "description": "Custom branded black apron.",
       "services": [
@@ -781,7 +781,7 @@
     {
       "id": "b39",
       "title": "Grey Hoodie Design",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-grey-hoodie-design.jpeg",
       "description": "Grey hoodie custom design.",
       "services": [
@@ -913,7 +913,7 @@
     {
       "id": "b49",
       "title": "TKS Polo Shirt",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-tks-polo-shirt.jpeg",
       "description": "Custom embroidered TKS polo shirt.",
       "services": [
@@ -939,7 +939,7 @@
     {
       "id": "b51",
       "title": "Gilead Farm Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-gilead-farm-hoodie.jpeg",
       "description": "Black hoodie with Gilead Farm embroidery.",
       "services": [
@@ -952,7 +952,7 @@
     {
       "id": "b52",
       "title": "Yummy Butchery Apron",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-yummy-butchery-apron.jpeg",
       "description": "Custom printed apron for Yummy Butchery.",
       "services": [
@@ -1006,7 +1006,7 @@
     {
       "id": "b56",
       "title": "Makafresh Reflector Jacket",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-makafresh-reflector.jpeg",
       "description": "Branded high-visibility reflector jacket.",
       "services": [
@@ -1059,7 +1059,7 @@
     {
       "id": "b60",
       "title": "Kayaky Resort Polos",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-kayaky-resort-polos.jpeg",
       "description": "Stack of white branded Kayaky Resort polos.",
       "services": [
@@ -1111,7 +1111,7 @@
     {
       "id": "b64",
       "title": "Unaniambia Pink Hoodie",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-unaniambia-pink-hoodie.jpeg",
       "description": "Custom printed pink hoodie.",
       "services": [
@@ -1137,7 +1137,7 @@
     {
       "id": "b66",
       "title": "Trouble White T-Shirts",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-trouble-white-tshirts.jpeg",
       "description": "Custom text printed white t-shirts.",
       "services": [
@@ -1204,7 +1204,7 @@
     {
       "id": "b71",
       "title": "Yummy Butchery Coat",
-      "category": "APPAREL",
+      "category": "APPAREL BRANDING",
       "image": "/work/apparel-yummy-butchery-coat.jpeg",
       "description": "Printed white lab coat for Yummy Butchery.",
       "services": [
