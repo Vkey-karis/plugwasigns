@@ -23,7 +23,7 @@
         "3D Signage",
         "Installation"
       ],
-      "isHero": true,
+      "isHero": false,
       "isFeatured": true,
       "priority": 9
     },
