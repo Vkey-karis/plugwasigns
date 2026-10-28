@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, CheckCircle2, ChevronRight, Box, Layout, Stamp, Car, Lightbulb, PenTool,
   Store, Building2, Package, Calendar, Settings, Ruler, Layers, Wrench, Zap,
-  MessageCircle, ShieldCheck, MapPin, Clock, Award, Globe, Monitor, Search, SmartphoneNfc
+  MessageCircle, ShieldCheck, MapPin, Clock, Award, Globe, Monitor, Search, SmartphoneNfc,
+  Lock, ShoppingCart, Sparkles
 } from 'lucide-react';
 import { getCategoryServices } from '../data/services';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -523,100 +524,254 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Physical + Digital Presence Section */}
-      <section className="py-24 bg-primary-light border-y border-white/5">
-        <div className="container mx-auto px-6 lg:px-12">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold tracking-widest text-accent uppercase bg-accent/10 px-3 py-1 rounded-full border border-accent/20 mb-3 inline-block">
-              Complete Brand Presence
-            </span>
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">WE SHOW UP FOR YOUR BRAND — EVERYWHERE</h2>
-            <p className="text-gray-400 text-lg">
-              A great sign stops traffic on the street. A great website captures them online. We build both.
+      {/* Physical + Digital Presence Section — Complete Brand Presence */}
+      <section className="py-24 bg-gradient-to-b from-primary via-[#080829] to-primary border-y border-white/5 relative overflow-hidden">
+        {/* Ambient atmospheric glows */}
+        <div className="absolute top-1/4 -left-40 w-[450px] h-[450px] bg-accent/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-40 w-[500px] h-[500px] bg-blue/15 rounded-full blur-[150px] pointer-events-none" />
+
+        {/* Architectural grid background */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-30"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(37,71,216,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,71,216,0.06) 1px, transparent 1px)',
+            backgroundSize: '48px 48px',
+          }}
+        />
+
+        <div className="container mx-auto px-6 lg:px-12 relative z-10">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue/15 border border-blue/30 text-blue-light text-xs font-bold tracking-widest uppercase mb-4">
+              <Sparkles size={14} className="text-accent" /> 360° Complete Brand Presence
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 tracking-tight">
+              WE SHOW UP FOR YOUR BRAND — EVERYWHERE
+            </h2>
+            <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+              A high-impact physical sign stops foot and road traffic. A high-converting website closes sales 24/7. We build both under one roof.
             </p>
+
+            {/* Visual Synergy Connector Bar */}
+            <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-3 bg-primary-light/90 backdrop-blur-md border border-white/10 px-5 py-2.5 rounded-full text-xs font-medium text-gray-300 shadow-xl">
+              <span className="flex items-center gap-1.5 text-accent font-bold">
+                <Store size={14} /> Physical Storefront
+              </span>
+              <span className="text-white/20">✦</span>
+              <span className="text-[11px] font-mono text-white bg-blue/20 border border-blue/40 px-2.5 py-0.5 rounded-full">
+                100% UNIFIED BRAND IDENTITY
+              </span>
+              <span className="text-white/20">✦</span>
+              <span className="flex items-center gap-1.5 text-blue-light font-bold">
+                <Monitor size={14} /> Digital Presence
+              </span>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Physical Presence */}
+          {/* Dual Power Cards Grid */}
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto items-stretch">
+            
+            {/* ── CARD 1: PHYSICAL STOREFRONT & STREET BRANDING ── */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-primary rounded-3xl border border-white/10 p-8 md:p-10 flex flex-col"
+              className="bg-primary-light/80 backdrop-blur-md rounded-3xl border border-white/10 hover:border-accent/40 p-6 md:p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden group transition-all duration-300"
             >
-              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center text-accent mb-6">
-                <Store size={28} />
+              {/* Card visual mockup window */}
+              <div className="relative h-56 rounded-2xl overflow-hidden mb-6 bg-black border border-white/10 shadow-inner">
+                <img
+                  src="/work/raffine-sign.png"
+                  alt="Physical Signage Fabrication"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+                {/* Badges on image */}
+                <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md border border-white/15 px-3 py-1 rounded-full text-[11px] font-bold text-accent flex items-center gap-1.5">
+                  <Store size={13} /> Street &amp; Storefront
+                </div>
+                <div className="absolute top-3 right-3 bg-accent text-black px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase">
+                  180+ Installs
+                </div>
+
+                <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between">
+                  <div>
+                    <span className="text-[10px] text-gray-400 uppercase tracking-widest block font-mono">Precision Fabrication</span>
+                    <h4 className="text-sm font-bold text-white">Custom 2D/3D Dimensional Letters &amp; Wraps</h4>
+                  </div>
+                </div>
               </div>
-              <span className="text-[10px] font-bold tracking-widest text-accent uppercase mb-2">Physical Presence</span>
-              <h3 className="text-2xl font-display font-bold mb-3">YOUR BRAND ON THE STREET</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                From your shopfront sign to your vehicle fleet, we make sure every Nairobian who walks or drives past knows exactly who you are. Custom fabricated, professionally installed, built to last.
-              </p>
-              <ul className="space-y-2.5 text-sm text-gray-300 mb-8 flex-1">
-                {['3D & 2D Signage', 'Vehicle & Fleet Branding', 'LED Illuminated Signs', 'Banners & Event Displays', 'Office Interior Branding', 'Stickers & Apparel'].map(item => (
-                  <li key={item} className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:underline mt-auto"
-              >
-                Explore all signage services <ArrowRight size={16} />
-              </Link>
+
+              {/* Text & Capability Chips */}
+              <div className="flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[11px] font-bold text-accent tracking-widest uppercase bg-accent/10 px-2.5 py-0.5 rounded border border-accent/20">
+                      Physical Pillar
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
+                    YOUR BRAND ON THE STREET
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    Make it impossible for customers to walk or drive past your business without looking. Fabricated with UV-treated acrylic, weatherproof Alucobond, and laser precision.
+                  </p>
+
+                  {/* Visual Capability Pills Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
+                    {[
+                      { icon: Box, text: '3D Letters' },
+                      { icon: Lightbulb, text: 'LED Illuminated' },
+                      { icon: Car, text: 'Vehicle Wraps' },
+                      { icon: Store, text: 'Shop Fascias' },
+                      { icon: Building2, text: 'Office Walls' },
+                      { icon: Stamp, text: 'Die-cut Stickers' },
+                    ].map(({ icon: Icon, text }) => (
+                      <div
+                        key={text}
+                        className="bg-white/5 border border-white/10 rounded-xl p-2.5 flex items-center gap-2 text-xs text-gray-200 group-hover:border-white/20 transition-colors"
+                      >
+                        <Icon size={14} className="text-accent shrink-0" />
+                        <span className="font-medium truncate">{text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom Action Footer */}
+                <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+                  <Link
+                    to="/portfolio"
+                    className="btn-shine w-full sm:w-auto flex-1 bg-accent hover:bg-accent-hover text-black font-bold py-3 px-5 rounded-xl text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-lg transition-all"
+                  >
+                    View 180+ Signs Portfolio <ArrowRight size={15} />
+                  </Link>
+                  <Link
+                    to="/services"
+                    className="w-full sm:w-auto border border-white/15 hover:border-white text-gray-300 hover:text-white py-3 px-4 rounded-xl text-xs font-semibold text-center transition-colors"
+                  >
+                    All Services
+                  </Link>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Digital Presence */}
+            {/* ── CARD 2: DIGITAL WEB & ONLINE SHOP PRESENCE ── */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="bg-primary rounded-3xl border border-blue/25 p-8 md:p-10 flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(37,71,216,0.08)]"
+              className="bg-primary-light/80 backdrop-blur-md rounded-3xl border border-blue/30 hover:border-blue/60 p-6 md:p-8 flex flex-col justify-between shadow-[0_0_40px_rgba(37,71,216,0.12)] relative overflow-hidden group transition-all duration-300"
             >
-              <div className="absolute top-0 right-0 w-48 h-48 bg-blue/5 rounded-full blur-2xl pointer-events-none" />
-              <div className="w-14 h-14 bg-blue/15 border border-blue/30 rounded-2xl flex items-center justify-center text-blue-light mb-6 relative z-10">
-                <Monitor size={28} />
+              {/* Browser Window Mockup */}
+              <div className="relative h-56 rounded-2xl overflow-hidden mb-6 bg-[#060919] border border-blue/30 shadow-inner flex flex-col">
+                {/* Browser Top Chrome */}
+                <div className="bg-[#0b1029] border-b border-blue/20 px-3.5 py-2.5 flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  </div>
+                  <div className="bg-black/50 border border-white/10 rounded-md px-3 py-0.5 text-[11px] font-mono text-gray-300 flex items-center gap-1.5">
+                    <Lock size={10} className="text-emerald-400" />
+                    <span>https://yourbusiness.co.ke</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-[10px] text-emerald-400 font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="hidden sm:inline">LIVE</span>
+                  </div>
+                </div>
+
+                {/* Inner Browser Preview UI */}
+                <div className="p-4 flex-1 flex flex-col justify-between relative overflow-hidden bg-gradient-to-b from-[#090e29] to-[#040614]">
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] font-bold text-blue-light tracking-widest uppercase">
+                        REACT • VITE • SUPABASE
+                      </span>
+                      <span className="bg-blue/30 text-blue-light border border-blue/40 px-2 py-0.5 rounded text-[10px] font-bold">
+                        FROM 25,000 KSH
+                      </span>
+                    </div>
+                    <h5 className="text-base font-display font-bold text-white leading-tight">
+                      Grow Your Business Online With M-Pesa &amp; Google SEO
+                    </h5>
+                    <p className="text-[11px] text-gray-400 line-clamp-1">
+                      Mobile-first speed, appointment bookings, automated checkouts &amp; WhatsApp ordering.
+                    </p>
+                  </div>
+
+                  {/* Browser simulated bottom bar */}
+                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-gray-400">
+                    <span className="flex items-center gap-1 text-accent font-semibold">
+                      <Zap size={11} /> 99+ Mobile Speed Score
+                    </span>
+                    <span className="text-gray-400 font-mono">Google Maps &amp; Search Indexed</span>
+                  </div>
+                </div>
               </div>
-              <span className="text-[10px] font-bold tracking-widest text-blue-light uppercase mb-2 relative z-10">Digital Presence</span>
-              <h3 className="text-2xl font-display font-bold mb-3 relative z-10">YOUR BRAND ONLINE TOO</h3>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6 relative z-10">
-                Your sign draws them in — your website seals the deal. We design and build fast, professional websites that represent your brand, rank on Google, and convert visitors into customers.
-              </p>
-              <ul className="space-y-2.5 text-sm text-gray-300 mb-8 flex-1 relative z-10">
-                {[
-                  { icon: Globe,          text: 'Business & portfolio websites' },
-                  { icon: Search,         text: 'SEO & Google My Business setup' },
-                  { icon: SmartphoneNfc,  text: 'Mobile-first, fast-loading' },
-                  { icon: Monitor,        text: 'Modern, professional design' },
-                ].map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex items-center gap-2.5">
-                    <Icon size={14} className="text-blue-light shrink-0" />
-                    {text}
-                  </li>
-                ))}
-              </ul>
-              <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
-                <Link
-                  to="/websites"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-accent bg-accent/10 hover:bg-accent hover:text-black border border-accent/20 px-4 py-2.5 rounded-full transition-colors"
-                >
-                  View Packages &amp; Pricing <ArrowRight size={14} />
-                </Link>
-                <a
-                  href={`https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=Hi%20PlugWaSigns,%20I%27d%20like%20to%20enquire%20about%20getting%20a%20website%20for%20my%20business.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-blue/80 hover:bg-blue border border-blue/50 hover:border-blue px-4 py-2.5 rounded-full transition-colors"
-                >
-                  <MessageCircle size={14} />
-                  WhatsApp
-                </a>
+
+              {/* Text & Capability Chips */}
+              <div className="flex-1 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[11px] font-bold text-blue-light tracking-widest uppercase bg-blue/10 px-2.5 py-0.5 rounded border border-blue/20">
+                      Digital Pillar
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-3">
+                    YOUR BRAND ONLINE TOO
+                  </h3>
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                    A customer spots your sign, then searches your business on their phone. We ensure they land on a modern, blisteringly fast website that converts curiosity into paying clients.
+                  </p>
+
+                  {/* Visual Capability Pills Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
+                    {[
+                      { icon: Globe, text: 'Landing Pages (25k)' },
+                      { icon: Sparkles, text: 'Business Sites (40k)' },
+                      { icon: ShoppingCart, text: 'E-Commerce (90k)' },
+                      { icon: SmartphoneNfc, text: 'M-Pesa Checkout' },
+                      { icon: Search, text: 'Google SEO' },
+                      { icon: ShieldCheck, text: 'Free SSL Security' },
+                    ].map(({ icon: Icon, text }) => (
+                      <div
+                        key={text}
+                        className="bg-blue/10 border border-blue/20 rounded-xl p-2.5 flex items-center gap-2 text-xs text-blue-light group-hover:border-blue/40 transition-colors"
+                      >
+                        <Icon size={14} className="text-blue-light shrink-0" />
+                        <span className="font-medium truncate text-gray-200">{text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bottom Action Footer */}
+                <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center gap-3">
+                  <Link
+                    to="/websites"
+                    className="btn-shine w-full sm:w-auto flex-1 bg-blue hover:bg-blue-light text-white font-bold py-3 px-5 rounded-xl text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-lg transition-all"
+                  >
+                    View 6 Packages &amp; Calculator <ArrowRight size={15} />
+                  </Link>
+                  <a
+                    href={`https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=Hi%20PlugWaSigns,%20I'd%20like%20to%20discuss%20getting%20a%20website%20for%20my%20business.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto border border-blue/40 hover:bg-blue/10 text-white py-3 px-4 rounded-xl text-xs font-semibold text-center flex items-center justify-center gap-1.5 transition-colors"
+                  >
+                    <MessageCircle size={14} className="text-accent" />
+                    WhatsApp
+                  </a>
+                </div>
               </div>
             </motion.div>
+
           </div>
         </div>
       </section>
