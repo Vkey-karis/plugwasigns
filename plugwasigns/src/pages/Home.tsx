@@ -136,10 +136,10 @@ export default function Home() {
             </div>
 
             {/* Headline with high contrast on white */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.05] tracking-tight text-[#09092E]">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.08] tracking-tight text-[#09092E]">
               WE MAKE YOUR BRAND{' '}
               <br className="hidden md:block" />
-              <span className="inline-flex items-center bg-[#09092E] text-accent px-4 py-1 rounded-2xl shadow-2xl border border-black/10 my-1">
+              <span className="inline-flex items-center bg-[#09092E] text-accent px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-xl sm:rounded-2xl shadow-2xl border border-black/10 my-1.5 text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.65rem] whitespace-nowrap max-w-full">
                 <AnimatedSignText />
               </span>
             </h1>
