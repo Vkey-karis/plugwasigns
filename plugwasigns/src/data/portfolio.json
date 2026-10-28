@@ -26,14 +26,15 @@
     "VEHICLE": "/work/3d-golden-led-sign.jpeg",
     "LED": "/work/neon-cocktail.jpg",
     "APPAREL": "/work/apparel-hoodie-2.jpg",
-    "APPAREL BRANDING": "/work/apparel-hoodie-1.png",
+    "APPAREL BRANDING": "/work/apparel-yummy-butchery-apron.jpeg",
     "CAMPAIGN MERCHANDISE": "/work/apparel-uda-political-tshirt.jpeg",
     "ROLLUP BANNERS/ TEARDROP": "/work/teardrop-banners.png",
     "PRINT": "/work/print-home-office-delivery-flyers.jpeg",
     "DECOR": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80",
     "BANNERS": "/work/teardrop-banners.png",
-    "SIGNS": "/work/3d-circular-led-sign.jpeg",
-    "LIGHT BOX": "/work/3d-kefa-motorbike-solution.jpeg"
+    "SIGNS": "/work/reflective-exit-signs.png",
+    "LIGHT BOX": "/work/3d-kefa-motorbike-solution.jpeg",
+    "PRIVACY FENCE": "/work/privacy-fence-green-netting.jpeg"
   },
   "items": [
     {
@@ -357,10 +358,10 @@
     },
     {
       "id": "b6",
-      "title": "Green Branded Hoodies",
-      "category": "APPAREL BRANDING",
+      "title": "CITECH CUSTOMIZED NOTEBOOKS & BOTTLES",
+      "category": "PRINT",
       "image": "/work/apparel-green-branded-hoodies.jpeg",
-      "description": "Custom printed green hoodies.",
+      "description": "Custom printed BOTTLES & NOTEBOOKS",
       "services": [
         "Apparel Printing"
       ],
@@ -370,10 +371,10 @@
     },
     {
       "id": "b7",
-      "title": "Black & White Hoodies",
-      "category": "APPAREL BRANDING",
+      "title": "CUSTOM NOTEBOOKS",
+      "category": "PRINT",
       "image": "/work/apparel-white-black-branded-hoodies.jpeg",
-      "description": "Matching branded hoodies.",
+      "description": "CUSTOM NOTEBOOKS\n",
       "services": [
         "Apparel Printing"
       ],
@@ -384,7 +385,7 @@
     {
       "id": "b8",
       "title": "Red Branded Caps",
-      "category": "APPAREL BRANDING",
+      "category": "RECEIPT BOOKS",
       "image": "/work/apparel-red-branded-caps.jpeg",
       "description": "Custom printed red baseball caps.",
       "services": [
@@ -396,12 +397,12 @@
     },
     {
       "id": "b9",
-      "title": "Maroon Branded Hoodies",
-      "category": "APPAREL BRANDING",
+      "title": "CAFE' MENUS ",
+      "category": "PRINT",
       "image": "/work/apparel-maroon-branded-hoodies.jpeg",
-      "description": "Custom printed maroon hoodies.",
+      "description": "Custom printed coffee shop menus.",
       "services": [
-        "Apparel Printing"
+        "Printing"
       ],
       "isHero": false,
       "isFeatured": false,
@@ -619,12 +620,12 @@
     },
     {
       "id": "b27",
-      "title": "Organic Farm Produce Banner",
-      "category": "BANNERS",
+      "title": "BRANDED WATER BOTTLES",
+      "category": "PRINT",
       "image": "/work/banners-organic-farm-produce.jpeg",
-      "description": "Large organic farm banner.",
+      "description": "Bottles branded with Nike and Addidas Logos",
       "services": [
-        "Banners"
+        "printing"
       ],
       "isHero": false,
       "isFeatured": false,
@@ -724,7 +725,7 @@
     {
       "id": "b35",
       "title": "Grey Hoodie",
-      "category": "APPAREL BRANDING",
+      "category": "3D",
       "image": "/work/apparel-grey-hoodie.jpeg",
       "description": "Custom grey hoodie.",
       "services": [
@@ -737,7 +738,7 @@
     {
       "id": "b36",
       "title": "Navy Hoodie",
-      "category": "APPAREL BRANDING",
+      "category": "2D",
       "image": "/work/apparel-navy-hoodie.jpeg",
       "description": "Custom navy blue hoodie.",
       "services": [
@@ -750,7 +751,7 @@
     {
       "id": "b37",
       "title": "Black Hoodie Logo",
-      "category": "APPAREL BRANDING",
+      "category": "2D",
       "image": "/work/apparel-black-hoodie-logo.jpeg",
       "description": "Black hoodie with custom logo.",
       "services": [
@@ -763,7 +764,7 @@
     {
       "id": "b38",
       "title": "Black Apron",
-      "category": "APPAREL BRANDING",
+      "category": "2D",
       "image": "/work/apparel-black-apron.jpeg",
       "description": "Custom branded black apron.",
       "services": [
@@ -776,7 +777,7 @@
     {
       "id": "b39",
       "title": "Grey Hoodie Design",
-      "category": "APPAREL BRANDING",
+      "category": "3D",
       "image": "/work/apparel-grey-hoodie-design.jpeg",
       "description": "Grey hoodie custom design.",
       "services": [
@@ -1250,7 +1251,7 @@
     {
       "id": "b75",
       "title": "Privacy Fence Netting",
-      "category": "BANNERS",
+      "category": "PRIVACY FENCE",
       "image": "/work/privacy-fence-green-netting.jpeg",
       "description": "Green privacy shade net installation.",
       "services": [
