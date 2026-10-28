@@ -25,6 +25,7 @@
     "BRANDING": "/work/raffine-board.png",
     "VEHICLE": "/work/3d-golden-led-sign.jpeg",
     "LED": "/work/neon-cocktail.jpg",
+    "SHOP SIGNS": "/work/raffine-sign.png",
     "APPAREL": "/work/apparel-hoodie-2.jpg",
     "APPAREL BRANDING": "/work/apparel-yummy-butchery-apron.jpeg",
     "CAMPAIGN MERCHANDISE": "/work/apparel-uda-political-tshirt.jpeg",
@@ -352,7 +353,7 @@
       "services": [
         "Printing"
       ],
-      "isHero": false,
+      "isHero": true,
       "isFeatured": false,
       "priority": 0
     },
@@ -443,7 +444,7 @@
       "services": [
         "3D Signage"
       ],
-      "isHero": false,
+      "isHero": true,
       "isFeatured": true,
       "priority": 0
     },
@@ -783,7 +784,7 @@
       "services": [
         "Apparel Printing"
       ],
-      "isHero": false,
+      "isHero": true,
       "isFeatured": false,
       "priority": 0
     },
