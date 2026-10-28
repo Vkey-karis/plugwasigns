@@ -29,6 +29,9 @@ export const DEFAULT_CATEGORY_IMAGES: Record<string, string> = {
   "LED": "/work/neon-cocktail.jpg",
   "SHOP SIGNS": "/work/raffine-sign.png",
   "APPAREL": "/work/apparel-hoodie-2.jpg",
+  "APPAREL BRANDING": "/work/apparel-hoodie-2.jpg",
+  "CAMPAIGN MERCHANDISE": "/work/apparel-uda-political-tshirt.jpeg",
+  "ROLLUP BANNERS/ TEARDROP": "/work/teardrop-banners.png",
   "PRINT": "/work/eulogy-program.png",
   "DECOR": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80",
   "BANNERS": "/work/teardrop-banners.png"

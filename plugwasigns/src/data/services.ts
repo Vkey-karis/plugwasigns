@@ -88,6 +88,33 @@ export const CATEGORY_METADATA_MAP: Record<string, CategoryMetadata> = {
     applications: ["Corporate uniforms", "Event t-shirts", "Safety wear (PPE)", "Promotional caps"],
     materials: ["Cotton", "Polyester Blends", "Embroidery Thread", "Heat Transfer Vinyl"]
   },
+  "APPAREL BRANDING": {
+    id: "apparel-branding",
+    title: "Apparel Branding",
+    shortDescription: "Custom t-shirts, hoodies, uniforms, and corporate wear.",
+    description: "Turn your team and customers into brand ambassadors with high-quality custom apparel. Screen printing, embroidery, and heat transfer.",
+    icon: Shirt,
+    applications: ["Corporate uniforms", "Event t-shirts", "Safety wear (PPE)", "Promotional caps"],
+    materials: ["Cotton", "Polyester Blends", "Embroidery Thread", "Heat Transfer Vinyl"]
+  },
+  "CAMPAIGN MERCHANDISE": {
+    id: "campaign-merchandise",
+    title: "Campaign Merchandise",
+    shortDescription: "Branded caps, t-shirts, reflector jackets, and event merchandise.",
+    description: "Large-scale political campaign merchandise, branded promotional apparel, hats, and high-visibility reflector gear printed and delivered fast.",
+    icon: Shirt,
+    applications: ["Political campaigns", "Corporate roadshows", "Promotional giveaways", "Volunteer gear"],
+    materials: ["Cotton T-shirts", "Polyester Caps", "Reflector Fabric", "Screen & Heat Transfer"]
+  },
+  "ROLLUP BANNERS/ TEARDROP": {
+    id: "rollup-banners-teardrop",
+    title: "Rollup & Teardrop Banners",
+    shortDescription: "Roll-up pull up banners, teardrop flags, and pop-up displays.",
+    description: "Portable, heavy-duty rollup banners and outdoor teardrop flags engineered for vibrant visibility at trade shows, events, and entrance points.",
+    icon: Flag,
+    applications: ["Trade exhibitions", "Conference foyers", "Storefront promotions", "Outdoor sports"],
+    materials: ["Polyester Fabric", "Aluminium Base Cassette", "Fiberglass Rods", "UV Resistant Ink"]
+  },
   "PRINT": {
     id: "print",
     title: "Print & Stationery",
