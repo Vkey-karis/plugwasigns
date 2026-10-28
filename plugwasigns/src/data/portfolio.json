@@ -15,7 +15,8 @@
     "ROLLUP BANNERS/ TEARDROP",
     "PRIVACY FENCE",
     "RECEIPT BOOKS",
-    "WALL MURALS & WALLPAPERS"
+    "WALL MURALS & WALLPAPERS",
+    "LIGHT BOX"
   ],
   "categoryImages": {
     "2D": "/work/gentry-spa.jpg",
@@ -31,7 +32,8 @@
     "PRINT": "/work/branded-bottles.png",
     "DECOR": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80",
     "BANNERS": "/work/teardrop-banners.png",
-    "SIGNS": "/work/3d-circular-led-sign.jpeg"
+    "SIGNS": "/work/3d-circular-led-sign.jpeg",
+    "LIGHT BOX": "/work/3d-kefa-motorbike-solution.jpeg"
   },
   "items": [
     {
@@ -114,7 +116,7 @@
         "2D Signage",
         "Printing"
       ],
-      "isHero": false,
+      "isHero": true,
       "isFeatured": false,
       "priority": 0
     },
@@ -191,7 +193,7 @@
     {
       "id": "p12",
       "title": "Reflective Safety Exit Signs",
-      "category": "2D",
+      "category": "SIGNS",
       "image": "/work/reflective-exit-signs.png",
       "description": "High-visibility reflective vinyl exit and directional signs produced for a commercial facility — standard and reflective finish.",
       "services": [
@@ -434,7 +436,7 @@
     {
       "id": "b11",
       "title": "Circular LED Sign",
-      "category": "3D",
+      "category": "SIGNS",
       "image": "/work/3d-circular-led-sign.jpeg",
       "description": "Glowing 3D circular LED signboard.",
       "services": [
@@ -447,7 +449,7 @@
     {
       "id": "b12",
       "title": "Golden LED Sign",
-      "category": "3D",
+      "category": "VEHICLE",
       "image": "/work/3d-golden-led-sign.jpeg",
       "description": "Premium golden backlit circular sign.",
       "services": [
@@ -499,7 +501,7 @@
     {
       "id": "b16",
       "title": "Blue Circular LED Sign",
-      "category": "3D",
+      "category": "APPAREL BRANDING",
       "image": "/work/3d-circular-led-sign-blue.jpeg",
       "description": "Blue glowing 3D circular signboard.",
       "services": [
@@ -524,22 +526,9 @@
       "priority": 0
     },
     {
-      "id": "b18",
-      "title": "Orange Square Sign",
-      "category": "3D",
-      "image": "/work/3d-orange-square-sign.jpeg",
-      "description": "Large Orange Square 3D sign.",
-      "services": [
-        "3D Signage"
-      ],
-      "isHero": false,
-      "isFeatured": false,
-      "priority": 0
-    },
-    {
       "id": "b19",
       "title": "Orange Square Sign (Night)",
-      "category": "3D",
+      "category": "BANNERS",
       "image": "/work/3d-orange-square-night.jpeg",
       "description": "Illuminated Orange Square 3D sign at night.",
       "services": [
@@ -553,7 +542,7 @@
     {
       "id": "b20",
       "title": "Orange Square Sign (Day)",
-      "category": "3D",
+      "category": "APPAREL BRANDING",
       "image": "/work/3d-orange-square-day.jpeg",
       "description": "Large Orange Square 3D sign.",
       "services": [
@@ -579,7 +568,7 @@
     {
       "id": "b22",
       "title": "Barber Shop Sign",
-      "category": "3D",
+      "category": "APPAREL BRANDING",
       "image": "/work/3d-barber-shop-sign.jpeg",
       "description": "Barber shop illuminated sign.",
       "services": [
@@ -592,7 +581,7 @@
     {
       "id": "b23",
       "title": "Lit Circular Logo",
-      "category": "3D",
+      "category": "APPAREL BRANDING",
       "image": "/work/3d-lit-circular-logo-sign.jpeg",
       "description": "Circular lit logo sign.",
       "services": [
@@ -695,12 +684,12 @@
     },
     {
       "id": "b31",
-      "title": "Goodnews Mission Board",
-      "category": "2D",
+      "title": "Hoodie Printing",
+      "category": "APPAREL BRANDING",
       "image": "/work/2d-goodnews-mission-board.jpeg",
-      "description": "Large 2D mission services board.",
+      "description": "DTF Branded Hoodie",
       "services": [
-        "2D Signage"
+        "Hoodie"
       ],
       "isHero": false,
       "isFeatured": false,
@@ -709,7 +698,7 @@
     {
       "id": "b32",
       "title": "White Lit Circular Sign",
-      "category": "3D",
+      "category": "APPAREL BRANDING",
       "image": "/work/3d-lit-circular-sign-white.jpeg",
       "description": "White illuminated circular sign.",
       "services": [
@@ -839,7 +828,7 @@
     {
       "id": "b42",
       "title": "Myrovina Fashion Sign",
-      "category": "3D",
+      "category": "2D",
       "image": "/work/3d-myrovina-fashion-sign.jpeg",
       "description": "Backlit circular 3D sign for Myrovina Fashion.",
       "services": [
@@ -898,14 +887,14 @@
         "3D Signage",
         "LED"
       ],
-      "isHero": false,
+      "isHero": true,
       "isFeatured": false,
       "priority": 0
     },
     {
       "id": "b47",
       "title": "Goodnews Directional Sign",
-      "category": "2D",
+      "category": "SIGNS",
       "image": "/work/2d-goodnews-mental-space-directional.jpeg",
       "description": "Directional 2D sign for Goodnews Mental Space.",
       "services": [
@@ -1017,7 +1006,7 @@
         "3D Signage",
         "LED"
       ],
-      "isHero": false,
+      "isHero": true,
       "isFeatured": false,
       "priority": 0
     },
@@ -1037,7 +1026,7 @@
     {
       "id": "b57",
       "title": "Gilead Barber Sign Close",
-      "category": "3D",
+      "category": "2D",
       "image": "/work/3d-gilead-barber-sign-close.jpeg",
       "description": "Close up of Gilead Barber Shop backlit sign.",
       "services": [
@@ -1181,7 +1170,7 @@
     },
     {
       "id": "b68",
-      "title": "Goodnews Mission Services",
+      "title": "Goodnews Mission Services LightBox",
       "category": "2D",
       "image": "/work/2d-goodnews-mission-services.jpeg",
       "description": "Large 2D sign board detailing church services.",
@@ -1208,7 +1197,7 @@
     {
       "id": "b70",
       "title": "Gilead Organic Farm",
-      "category": "2D",
+      "category": "STICKERS",
       "image": "/work/2d-gilead-organic-farm.jpeg",
       "description": "Outdoor branding and 2D sign for organic farm.",
       "services": [
@@ -1248,14 +1237,14 @@
     {
       "id": "b73",
       "title": "Kefa Motorbike Solution",
-      "category": "3D",
+      "category": "LIGHT BOX",
       "image": "/work/3d-kefa-motorbike-solution.jpeg",
       "description": "Backlit 3D sign board for Kefa Motorbike.",
       "services": [
         "3D Signage"
       ],
       "isHero": false,
-      "isFeatured": false,
+      "isFeatured": true,
       "priority": 0
     },
     {
@@ -1315,7 +1304,7 @@
     {
       "id": "b78",
       "title": "Yummy Butchery Sign",
-      "category": "3D",
+      "category": "LIGHT BOX",
       "image": "/work/3d-yummy-butchery-backlit.jpeg",
       "description": "Backlit 3D signboard for Yummy Butchery.",
       "services": [
@@ -1341,7 +1330,7 @@
     {
       "id": "b80",
       "title": "Urban Lane Kitchen Sign",
-      "category": "3D",
+      "category": "LIGHT BOX",
       "image": "/work/3d-urban-lane-kitchen.jpeg",
       "description": "Illuminated 3D box sign for Urban Lane Kitchen.",
       "services": [
