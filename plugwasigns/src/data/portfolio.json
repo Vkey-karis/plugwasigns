@@ -10,7 +10,8 @@
     "APPAREL",
     "PRINT",
     "DECOR",
-    "BANNERS"
+    "BANNERS",
+    "CAMPAIGN MERCHANDISE"
   ],
   "items": [
     {
@@ -2110,7 +2111,7 @@
     {
       "id": "b59",
       "title": "UDA Political T-Shirt",
-      "category": "APPAREL",
+      "category": "CAMPAIGN MERCHANDISE",
       "image": "/work/apparel-uda-political-tshirt.jpeg",
       "description": "Printed yellow UDA political campaign t-shirt.",
       "services": [
@@ -2136,7 +2137,7 @@
     {
       "id": "b61",
       "title": "UDA Political Cap",
-      "category": "APPAREL",
+      "category": "CAMPAIGN MERCHANDISE",
       "image": "/work/apparel-uda-political-cap.jpeg",
       "description": "Printed yellow UDA political campaign cap.",
       "services": [
