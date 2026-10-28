@@ -69,7 +69,7 @@ export default function Home() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     spotlightRef.current.style.background =
-      `radial-gradient(600px circle at ${x}px ${y}px, rgba(227,255,0,0.07), transparent 40%)`;
+      `radial-gradient(650px circle at ${x}px ${y}px, rgba(227,255,0,0.22), rgba(37,71,216,0.08), transparent 50%)`;
   }, []);
 
   const [currentSample, setCurrentSample] = useState(0);
@@ -92,29 +92,35 @@ export default function Home() {
   }, [heroItems.length, isRotatingPaused]);
 
   return (
-    <div>
-      {/* Hero Section */}
+    <div className="relative bg-white">
+      {/* ── Sticky Parallax Hero Section (White Background) ─────── */}
       <section
-        className="relative min-h-[100vh] flex flex-col items-center justify-center pt-24 pb-16 overflow-hidden"
+        className="sticky top-0 z-0 min-h-screen flex flex-col justify-center pt-28 pb-12 overflow-hidden bg-white text-gray-900"
         onMouseMove={handleMouseMove}
       >
-        {/* Base gradient */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at top right, rgba(227,255,0,0.08) 0%, #09092E 45%), radial-gradient(ellipse at bottom left, rgba(37,71,216,0.15) 0%, transparent 60%)" }} />
-
-        {/* Subtle grid pattern */}
+        {/* Ambient subtle light wash */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage:
-              'linear-gradient(rgba(37,71,216,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(37,71,216,0.06) 1px, transparent 1px)',
-            backgroundSize: '60px 60px',
+            background:
+              "radial-gradient(ellipse at top right, rgba(227,255,0,0.15) 0%, #ffffff 50%), radial-gradient(ellipse at bottom left, rgba(37,71,216,0.08) 0%, transparent 60%)"
           }}
         />
 
-        {/* Cursor spotlight */}
-        <div ref={spotlightRef} className="absolute inset-0 pointer-events-none" />
+        {/* Subtle grid pattern on white */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage:
+              'linear-gradient(rgba(9,9,46,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(9,9,46,0.04) 1px, transparent 1px)',
+            backgroundSize: '55px 55px',
+          }}
+        />
 
-        <div className="container mx-auto px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 gap-12 items-center py-12 md:py-20">
+        {/* Cursor spotlight on white background */}
+        <div ref={spotlightRef} className="absolute inset-0 pointer-events-none transition-opacity duration-300" />
+
+        <div className="container mx-auto px-6 lg:px-12 relative z-10 grid lg:grid-cols-2 gap-12 items-center py-6 md:py-10">
 
           {/* Left column */}
           <motion.div
@@ -124,19 +130,21 @@ export default function Home() {
             className="space-y-8"
           >
             {/* Trust Micro-badge Above Title */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue/15 border border-blue/30 text-blue-light text-xs font-bold tracking-wider">
-              <span className="flex text-accent text-xs">★★★★★</span>
-              <span className="text-gray-300">Nairobi&apos;s Trusted Sign Makers</span>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-bold tracking-wider shadow-sm">
+              <span className="flex text-amber-500 text-xs">★★★★★</span>
+              <span className="text-gray-800">Nairobi&apos;s Trusted Sign Makers</span>
             </div>
 
-            {/* Headline with scramble effect */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.0] tracking-tight">
+            {/* Headline with high contrast on white */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-[1.05] tracking-tight text-[#09092E]">
               WE MAKE YOUR BRAND{' '}
               <br className="hidden md:block" />
-              <AnimatedSignText />
+              <span className="inline-flex items-center bg-[#09092E] text-accent px-4 py-1 rounded-2xl shadow-2xl border border-black/10 my-1">
+                <AnimatedSignText />
+              </span>
             </h1>
 
-            <p className="text-lg text-gray-400 max-w-xl leading-relaxed">
+            <p className="text-lg text-gray-700 font-medium max-w-xl leading-relaxed">
               Custom 3D letters, illuminated signage, vehicle wraps, and bold visual branding — plus professional websites that keep your brand visible online as well as on the street.
             </p>
 
@@ -144,7 +152,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 pt-1">
               <Link
                 to="/contact"
-                className="btn-shine bg-accent text-black px-8 py-4 rounded-full font-bold text-center hover:bg-accent-hover transition-all flex items-center justify-center group hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(227,255,0,0.25)]"
+                className="btn-shine bg-accent text-black px-8 py-4 rounded-full font-bold text-center hover:bg-accent-hover transition-all flex items-center justify-center group hover:scale-105 active:scale-95 shadow-[0_4px_25px_rgba(227,255,0,0.4)] border border-black/10"
               >
                 GET A FREE QUOTE
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
@@ -153,39 +161,39 @@ export default function Home() {
                 href={`https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=Hi%20PlugWaSigns,%20I'd%20like%20to%20inquire%20about%20a%20signage%20project.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-blue/40 text-blue-light px-7 py-4 rounded-full font-bold text-center hover:bg-blue/10 hover:border-blue hover:text-white transition-all flex items-center justify-center gap-2"
+                className="border-2 border-primary/20 text-primary px-7 py-4 rounded-full font-bold text-center hover:bg-primary hover:text-white transition-all flex items-center justify-center gap-2 shadow-sm"
               >
-                <MessageCircle size={18} className="text-accent" />
+                <MessageCircle size={18} className="text-blue" />
                 CHAT ON WHATSAPP
               </a>
             </div>
 
             {/* Value / Trust Points Bar */}
-            <div className="flex flex-wrap items-center gap-6 pt-2 text-xs text-gray-400 font-medium">
+            <div className="flex flex-wrap items-center gap-6 pt-2 text-xs text-gray-700 font-semibold">
               <div className="flex items-center gap-1.5">
-                <ShieldCheck size={16} className="text-accent" />
+                <ShieldCheck size={16} className="text-blue" />
                 <span>In-House Fabrication</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <Clock size={16} className="text-accent" />
+                <Clock size={16} className="text-blue" />
                 <span>Fast 48h Quotes</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <MapPin size={16} className="text-accent" />
+                <MapPin size={16} className="text-blue" />
                 <span>Countrywide Installation</span>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-blue/20">
+            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200">
               {[
                 { value: `${signsCount}+`, label: 'Signs Installed' },
                 { value: '2D & 3D', label: 'Custom Fabrication' },
                 { value: '5.0 ★', label: 'Client Satisfaction' },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <p className="text-3xl font-display font-bold text-white">{stat.value}</p>
-                  <p className="text-xs text-gray-400 mt-1">{stat.label}</p>
+                  <p className="text-3xl font-display font-bold text-[#09092E]">{stat.value}</p>
+                  <p className="text-xs text-gray-500 font-medium mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -200,9 +208,9 @@ export default function Home() {
             onMouseEnter={() => setIsRotatingPaused(true)}
             onMouseLeave={() => setIsRotatingPaused(false)}
           >
-            {/* Ambient glows */}
-            <div className="absolute w-80 h-80 bg-accent/15 rounded-full blur-[90px] animate-pulse" />
-            <div className="absolute w-64 h-64 bg-blue/20 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: "1.2s", top: "30%", right: "-10%" }} />
+            {/* Ambient glows behind central card */}
+            <div className="absolute w-80 h-80 bg-accent/25 rounded-full blur-[90px] animate-pulse" />
+            <div className="absolute w-64 h-64 bg-blue/20 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '1.2s', top: '30%', right: '-10%' }} />
 
             {/* Spinning decorative rings */}
             <div
@@ -210,7 +218,7 @@ export default function Home() {
               style={{ animation: 'spin 22s linear infinite' }}
             />
             <div
-              className="absolute w-[360px] h-[360px] rounded-full border border-accent/20 pointer-events-none"
+              className="absolute w-[360px] h-[360px] rounded-full border border-accent/30 pointer-events-none"
               style={{ animation: 'spin 16s linear infinite reverse' }}
             />
 
@@ -277,7 +285,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Floating service badges (Hidden on smaller screens to avoid overlap) */}
+            {/* Floating service badges */}
             {FLOATING_BADGES.map(({ label, Icon, href, style, delay, isSpecial }, i) => (
               <motion.div
                 key={label}
@@ -300,26 +308,29 @@ export default function Home() {
                   to={href}
                   className={`backdrop-blur-md rounded-xl px-3.5 py-2 text-xs font-bold flex items-center gap-2 shadow-2xl transition-all duration-300 group ${
                     isSpecial
-                      ? 'bg-blue/20 border border-blue/50 text-blue-light hover:border-accent hover:text-accent shadow-[0_0_20px_rgba(37,71,216,0.3)]'
-                      : 'bg-primary-light/95 border border-white/15 text-white hover:border-accent hover:text-accent'
+                      ? 'bg-blue text-white border border-blue-light hover:border-accent hover:text-accent shadow-[0_0_25px_rgba(37,71,216,0.4)]'
+                      : 'bg-[#09092E] border border-white/20 text-white hover:border-accent hover:text-accent'
                   }`}
                   title={`View ${label}`}
                 >
-                  <Icon size={12} className={isSpecial ? "text-blue-light group-hover:text-accent" : "text-accent"} />
+                  <Icon size={12} className={isSpecial ? "text-accent" : "text-accent"} />
                   <span>{label}</span>
                 </Link>
               </motion.div>
             ))}
           </motion.div>
         </div>
+      </section>
 
+      {/* ── PARALLAX CURTAIN: SCROLLS UP AND COVERS THE HERO ─────────── */}
+      <div className="relative z-10 bg-primary shadow-[0_-30px_70px_rgba(0,0,0,0.7)] rounded-t-[36px] md:rounded-t-[48px] border-t border-white/10">
         {/* Marquee ticker strip */}
-        <div className="w-full border-t border-white/10 bg-primary-light/40 backdrop-blur-sm overflow-hidden py-3">
+        <div className="w-full bg-primary-light/60 backdrop-blur-md overflow-hidden py-3.5 rounded-t-[36px] md:rounded-t-[48px]">
           <div className="flex animate-marquee whitespace-nowrap">
             {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
               <span
                 key={i}
-                className="inline-flex items-center gap-3 mx-8 text-[11px] font-bold tracking-[0.2em] text-white/40"
+                className="inline-flex items-center gap-3 mx-8 text-[11px] font-bold tracking-[0.2em] text-white/50"
               >
                 <span className="w-1.5 h-1.5 bg-blue rounded-full" />
                 {item}
@@ -327,9 +338,8 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Client Logos / Trusted By Nairobi Brands Bar */}
+        {/* Client Logos / Trusted By Nairobi Brands Bar */}
       <section className="py-10 bg-primary border-b border-white/5">
         <div className="container mx-auto px-6 lg:px-12">
           <p className="text-center text-xs uppercase tracking-[0.25em] text-gray-500 font-bold mb-6">
@@ -895,6 +905,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

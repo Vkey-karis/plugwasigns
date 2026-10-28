@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { clsx } from "clsx";
@@ -19,10 +19,12 @@ export default function Navbar() {
 
   useEffect(() => { setIsOpen(false); }, [location.pathname]);
 
+  const isLightNav = location.pathname === '/' && !isScrolled;
+
   const navClasses = twMerge(
     "fixed w-full z-50 transition-all duration-300 border-b border-transparent",
     isScrolled
-      ? "bg-primary/90 backdrop-blur-md border-blue/20 py-4 shadow-[0_4px_30px_rgba(37,71,216,0.12)]"
+      ? "bg-primary/95 backdrop-blur-md border-blue/20 py-4 shadow-[0_4px_30px_rgba(37,71,216,0.12)]"
       : "bg-transparent py-6"
   );
 
@@ -30,7 +32,8 @@ export default function Navbar() {
     <nav className={navClasses}>
       <div className="container mx-auto px-6 lg:px-12 flex justify-between items-center">
         <Link to="/" className="text-2xl font-display font-bold tracking-tighter">
-          PLUGWA<span className="text-accent">SIGNS</span>
+          <span className={isLightNav ? "text-primary transition-colors" : "text-white transition-colors"}>PLUGWA</span>
+          <span className={isLightNav ? "text-blue bg-blue/10 px-1 py-0.5 rounded ml-0.5 text-glow-none" : "text-accent"}>SIGNS</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -40,10 +43,14 @@ export default function Navbar() {
               key={item.label}
               to={item.href}
               className={clsx(
-                "relative transition-colors pb-0.5",
-                location.pathname === item.href
-                  ? "text-accent"
-                  : "text-gray-300 hover:text-white"
+                "relative transition-colors pb-0.5 font-semibold",
+                isLightNav
+                  ? location.pathname === item.href
+                    ? "text-blue"
+                    : "text-gray-800 hover:text-blue"
+                  : location.pathname === item.href
+                    ? "text-accent"
+                    : "text-gray-300 hover:text-white"
               )}
             >
               {item.label}
@@ -58,14 +65,14 @@ export default function Navbar() {
           ))}
           <Link
             to="/contact"
-            className="btn-shine bg-accent text-black px-6 py-2.5 rounded-full font-bold hover:bg-accent-hover transition-transform hover:scale-105 active:scale-95"
+            className="btn-shine bg-accent text-black px-6 py-2.5 rounded-full font-bold hover:bg-accent-hover transition-transform hover:scale-105 active:scale-95 shadow-md border border-black/10"
           >
             GET A QUOTE
           </Link>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white p-2" onClick={() => setIsOpen(true)} aria-label="Open menu">
+        <button className={`md:hidden p-2 transition-colors ${isLightNav ? "text-gray-900" : "text-white"}`} onClick={() => setIsOpen(true)} aria-label="Open menu">
           <Menu size={28} />
         </button>
       </div>
@@ -123,4 +130,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
