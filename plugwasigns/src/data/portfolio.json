@@ -80,16 +80,16 @@
     },
     {
       "id": "p4",
-      "title": "Luna – 2D Storefront Sign",
+      "title": "Luna – 3D Storefront Sign",
       "category": "3D",
       "image": "/work/luna-sign.png",
-      "description": "Sleek 2D signboard with gloss finish and custom script typography for an upscale lounge.",
+      "description": "Sleek 3D signboard with gloss finish and custom script typography for an upscale lounge.",
       "services": [
-        "2D Signage",
+        "3D Signage",
         "Design"
       ],
-      "isHero": false,
-      "isFeatured": true,
+      "isHero": true,
+      "isFeatured": false,
       "priority": 7
     },
     {
@@ -887,7 +887,7 @@
         "3D Signage",
         "LED"
       ],
-      "isHero": true,
+      "isHero": false,
       "isFeatured": false,
       "priority": 0
     },
