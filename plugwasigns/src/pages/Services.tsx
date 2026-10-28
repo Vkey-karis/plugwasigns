@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { getCategoryServices } from '../data/services';
 import { usePortfolio } from '../context/PortfolioContext';
-import { ArrowRight, Layers } from 'lucide-react';
+import { ArrowRight, Layers, Globe, Monitor, MessageCircle, Search, SmartphoneNfc, Sparkles } from 'lucide-react';
+import { BUSINESS_CONFIG } from '../data/config';
 
 export default function Services() {
   const { categories, categoryImages, items } = usePortfolio();
@@ -21,7 +22,7 @@ export default function Services() {
           </div>
           <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">OUR SERVICES</h1>
           <p className="text-xl text-gray-400">
-            From a simple sticker to a complete storefront transformation. We design, produce, and install.
+            From a simple sticker to a complete storefront transformation — and websites to back them up online. We design, produce, install, and go digital.
           </p>
         </div>
 
@@ -89,6 +90,82 @@ export default function Services() {
             );
           })}
         </div>
+
+        {/* Website Service Card — Links to dedicated /websites page */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8 group relative bg-primary-light border border-blue/30 rounded-2xl overflow-hidden hover:border-blue/60 transition-colors flex flex-col md:flex-row shadow-[0_0_35px_rgba(37,71,216,0.08)]"
+        >
+          {/* Left: Visual */}
+          <div className="h-56 md:h-auto md:w-2/5 overflow-hidden relative bg-gradient-to-br from-[#09092E] to-[#0d0d3a] flex items-center justify-center p-8">
+            <div className="relative text-center">
+              <div className="w-28 h-28 mx-auto bg-blue/15 rounded-3xl border border-blue/30 flex items-center justify-center mb-3">
+                <Monitor size={52} className="text-blue-light" />
+              </div>
+              <div className="inline-flex items-center gap-1.5 text-xs text-accent font-bold uppercase tracking-wider bg-black/60 px-3 py-1 rounded-full border border-white/10">
+                <Sparkles size={13} /> 6 Tailored Packages
+              </div>
+            </div>
+            <div className="absolute top-4 left-4 bg-primary/85 backdrop-blur-sm border border-blue/20 px-3 py-1 rounded-full text-xs font-bold text-blue-light">
+              DIGITAL SOLUTIONS
+            </div>
+          </div>
+
+          {/* Right: Content */}
+          <div className="p-8 md:p-10 flex flex-col flex-1 justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-[11px] font-bold text-blue-light tracking-widest uppercase bg-blue/10 px-2.5 py-0.5 rounded border border-blue/20">
+                  WEBSITES • FROM 25,000 KSH
+                </span>
+                <span className="text-xs text-accent font-bold">
+                  Starter • Business • E-Commerce
+                </span>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-display font-bold mb-3 text-white">
+                Website Design &amp; Development
+              </h3>
+              <p className="text-gray-300 mb-6 text-sm leading-relaxed">
+                Your sign stops them at the door — your website brings them in from Google. We design and build fast, mobile-friendly websites that strengthen your brand online, help you rank locally, and turn visitors into paying customers.
+              </p>
+
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-2 mb-8 text-xs text-gray-300">
+                {[
+                  { icon: Globe,          text: 'Starter Landing Page (25k)' },
+                  { icon: Search,         text: 'Business Website (40k)' },
+                  { icon: Monitor,        text: 'E-Commerce Stores (90k)' },
+                  { icon: SmartphoneNfc,  text: 'Mobile & M-Pesa Ready' },
+                ].map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex items-center gap-2">
+                    <Icon size={14} className="text-blue-light shrink-0" />
+                    <span>{text}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-5 border-t border-white/5">
+              <Link
+                to="/websites"
+                className="btn-shine bg-accent text-black font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-md hover:bg-accent-hover transition-colors"
+              >
+                VIEW PACKAGES &amp; PRICING <ArrowRight size={15} />
+              </Link>
+              <a
+                href={`https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=Hi%20PlugWaSigns,%20I'd%20like%20to%20enquire%20about%20getting%20a%20website%20for%20my%20business.`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 border border-blue/40 hover:bg-blue/10 text-white font-bold px-5 py-3 rounded-xl text-xs transition-colors"
+              >
+                <MessageCircle size={15} className="text-accent" />
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </div>
   );

@@ -70,6 +70,15 @@ export default function Footer() {
               WHAT WE BUILD
             </h4>
             <ul className="space-y-2.5">
+              <li>
+                <Link 
+                  to="/websites" 
+                  className="text-blue-light hover:text-accent font-semibold transition-colors text-sm flex items-center gap-1.5"
+                >
+                  <span className="w-1.5 h-1.5 bg-blue-light rounded-full" />
+                  Website Design &amp; Dev
+                </Link>
+              </li>
               {categories.slice(0, 8).map(cat => (
                 <li key={cat}>
                   <Link 

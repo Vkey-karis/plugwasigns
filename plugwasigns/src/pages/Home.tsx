@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, CheckCircle2, ChevronRight, Box, Layout, Stamp, Car, Lightbulb, PenTool,
   Store, Building2, Package, Calendar, Settings, Ruler, Layers, Wrench, Zap,
-  MessageCircle, ShieldCheck, MapPin, Clock, Award
+  MessageCircle, ShieldCheck, MapPin, Clock, Award, Globe, Monitor, Search, SmartphoneNfc
 } from 'lucide-react';
 import { getCategoryServices } from '../data/services';
 import { usePortfolio } from '../context/PortfolioContext';
@@ -13,7 +13,7 @@ import AnimatedSignText from '../components/AnimatedSignText';
 
 const MARQUEE_ITEMS = [
   'STOREFRONT SIGNS', 'VEHICLE WRAPS', 'LED ILLUMINATION', '3D LETTERS',
-  'OFFICE BRANDING', 'CUSTOM STICKERS', 'ACRYLIC LETTERS', 'WINDOW GRAPHICS',
+  'OFFICE BRANDING', 'CUSTOM STICKERS', 'ACRYLIC LETTERS', 'WINDOW GRAPHICS', 'WEBSITES',
 ];
 
 const TRUST_BRANDS = [
@@ -135,7 +135,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg text-gray-400 max-w-xl leading-relaxed">
-              Custom 3D letters, illuminated signage, vehicle wraps, and bold visual branding engineered for businesses across Nairobi and Kenya.
+              Custom 3D letters, illuminated signage, vehicle wraps, and bold visual branding — plus professional websites that keep your brand visible online as well as on the street.
             </p>
 
             {/* CTAs with Direct WhatsApp option */}
@@ -346,15 +346,17 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-display font-bold">WHAT CAN WE BUILD FOR YOU?</h2>
           </div>
 
-          <div className="grid md:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              { icon: Store, title: 'SHOP', items: ['Storefront signs', 'Window graphics', '3D letters'] },
-              { icon: Building2, title: 'OFFICE', items: ['Reception signs', 'Wall branding', 'Directional signs'] },
-              { icon: Car, title: 'VEHICLE', items: ['Car branding', 'Fleet branding', 'Decals'] },
-              { icon: Package, title: 'PRODUCT', items: ['Labels', 'Product stickers', 'Packaging'] },
-              { icon: Calendar, title: 'EVENT', items: ['Event branding', 'Rollup banners', 'Teardrop flags'] },
+              { icon: Store,    title: 'SHOP',    items: ['Storefront signs', 'Window graphics', '3D letters'],         link: '/services' },
+              { icon: Building2,title: 'OFFICE',  items: ['Reception signs', 'Wall branding', 'Directional signs'],     link: '/services' },
+              { icon: Car,      title: 'VEHICLE', items: ['Car branding', 'Fleet branding', 'Decals'],                  link: '/services' },
+              { icon: Package,  title: 'PRODUCT', items: ['Labels', 'Product stickers', 'Packaging'],                   link: '/services' },
+              { icon: Calendar, title: 'EVENT',   items: ['Event branding', 'Rollup banners', 'Teardrop flags'],        link: '/services' },
+              { icon: Globe,    title: 'WEBSITE', items: ['Business website', 'Online portfolio', 'SEO & Google Maps'], link: '/websites' },
             ].map((cat, i) => {
               const Icon = cat.icon;
+              const isWebsite = cat.title === 'WEBSITE';
               return (
                 <motion.div 
                   key={cat.title}
@@ -362,27 +364,37 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="bg-primary-light p-6 md:p-8 rounded-2xl border border-white/5 hover:border-accent/40 transition-colors group flex flex-col justify-between"
+                  className={`p-6 md:p-8 rounded-2xl border transition-colors group flex flex-col justify-between ${
+                    isWebsite
+                      ? 'bg-blue/5 border-blue/25 hover:border-blue/50'
+                      : 'bg-primary-light border-white/5 hover:border-accent/40'
+                  }`}
                 >
                   <div>
-                    <div className="w-12 h-12 bg-white/5 group-hover:bg-accent group-hover:text-black rounded-xl flex items-center justify-center mb-6 transition-colors text-white">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors text-white ${
+                      isWebsite
+                        ? 'bg-blue/15 group-hover:bg-blue group-hover:text-white'
+                        : 'bg-white/5 group-hover:bg-accent group-hover:text-black'
+                    }`}>
                       <Icon size={24} />
                     </div>
                     <h3 className="text-xl font-bold mb-4 font-display">{cat.title}</h3>
                     <ul className="space-y-2 text-sm text-gray-400">
                       {cat.items.map(item => (
                         <li key={item} className="flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 bg-accent rounded-full" />
+                          <span className={`w-1.5 h-1.5 rounded-full ${isWebsite ? 'bg-blue-light' : 'bg-accent'}`} />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                   <Link 
-                    to="/portfolio" 
-                    className="mt-6 pt-4 border-t border-white/5 text-xs font-bold text-accent hover:underline inline-flex items-center"
+                    to={cat.link}
+                    className={`mt-6 pt-4 border-t border-white/5 text-xs font-bold hover:underline inline-flex items-center ${
+                      isWebsite ? 'text-blue-light' : 'text-accent'
+                    }`}
                   >
-                    Explore samples →
+                    {isWebsite ? 'Ask about websites →' : 'Explore samples →'}
                   </Link>
                 </motion.div>
               );
@@ -500,6 +512,104 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Physical + Digital Presence Section */}
+      <section className="py-24 bg-primary-light border-y border-white/5">
+        <div className="container mx-auto px-6 lg:px-12">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <span className="text-xs font-bold tracking-widest text-accent uppercase bg-accent/10 px-3 py-1 rounded-full border border-accent/20 mb-3 inline-block">
+              Complete Brand Presence
+            </span>
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">WE SHOW UP FOR YOUR BRAND — EVERYWHERE</h2>
+            <p className="text-gray-400 text-lg">
+              A great sign stops traffic on the street. A great website captures them online. We build both.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Physical Presence */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="bg-primary rounded-3xl border border-white/10 p-8 md:p-10 flex flex-col"
+            >
+              <div className="w-14 h-14 bg-accent/10 border border-accent/20 rounded-2xl flex items-center justify-center text-accent mb-6">
+                <Store size={28} />
+              </div>
+              <span className="text-[10px] font-bold tracking-widest text-accent uppercase mb-2">Physical Presence</span>
+              <h3 className="text-2xl font-display font-bold mb-3">YOUR BRAND ON THE STREET</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                From your shopfront sign to your vehicle fleet, we make sure every Nairobian who walks or drives past knows exactly who you are. Custom fabricated, professionally installed, built to last.
+              </p>
+              <ul className="space-y-2.5 text-sm text-gray-300 mb-8 flex-1">
+                {['3D & 2D Signage', 'Vehicle & Fleet Branding', 'LED Illuminated Signs', 'Banners & Event Displays', 'Office Interior Branding', 'Stickers & Apparel'].map(item => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Link
+                to="/services"
+                className="inline-flex items-center gap-2 text-sm font-bold text-accent hover:underline mt-auto"
+              >
+                Explore all signage services <ArrowRight size={16} />
+              </Link>
+            </motion.div>
+
+            {/* Digital Presence */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="bg-primary rounded-3xl border border-blue/25 p-8 md:p-10 flex flex-col relative overflow-hidden shadow-[0_0_40px_rgba(37,71,216,0.08)]"
+            >
+              <div className="absolute top-0 right-0 w-48 h-48 bg-blue/5 rounded-full blur-2xl pointer-events-none" />
+              <div className="w-14 h-14 bg-blue/15 border border-blue/30 rounded-2xl flex items-center justify-center text-blue-light mb-6 relative z-10">
+                <Monitor size={28} />
+              </div>
+              <span className="text-[10px] font-bold tracking-widest text-blue-light uppercase mb-2 relative z-10">Digital Presence</span>
+              <h3 className="text-2xl font-display font-bold mb-3 relative z-10">YOUR BRAND ONLINE TOO</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6 relative z-10">
+                Your sign draws them in — your website seals the deal. We design and build fast, professional websites that represent your brand, rank on Google, and convert visitors into customers.
+              </p>
+              <ul className="space-y-2.5 text-sm text-gray-300 mb-8 flex-1 relative z-10">
+                {[
+                  { icon: Globe,          text: 'Business & portfolio websites' },
+                  { icon: Search,         text: 'SEO & Google My Business setup' },
+                  { icon: SmartphoneNfc,  text: 'Mobile-first, fast-loading' },
+                  { icon: Monitor,        text: 'Modern, professional design' },
+                ].map(({ icon: Icon, text }) => (
+                  <li key={text} className="flex items-center gap-2.5">
+                    <Icon size={14} className="text-blue-light shrink-0" />
+                    {text}
+                  </li>
+                ))}
+              </ul>
+              <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
+                <Link
+                  to="/websites"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-accent bg-accent/10 hover:bg-accent hover:text-black border border-accent/20 px-4 py-2.5 rounded-full transition-colors"
+                >
+                  View Packages &amp; Pricing <ArrowRight size={14} />
+                </Link>
+                <a
+                  href={`https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=Hi%20PlugWaSigns,%20I%27d%20like%20to%20enquire%20about%20getting%20a%20website%20for%20my%20business.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-blue/80 hover:bg-blue border border-blue/50 hover:border-blue px-4 py-2.5 rounded-full transition-colors"
+                >
+                  <MessageCircle size={14} />
+                  WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* 2D vs 3D Signage Comparison */}
       <section className="py-24">
         <div className="container mx-auto px-6 lg:px-12 max-w-5xl">
@@ -562,12 +672,12 @@ export default function Home() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Settings, title: "CUSTOM FABRICATION", desc: "Built to your exact specs and pantone color palettes." },
-              { icon: Ruler, title: "PRECISION FIT", desc: "Laser cutting, routering, and seamless corner assembly." },
-              { icon: Layers, title: "WEATHERPROOF MATERIALS", desc: "Alucobond, UV-treated acrylic, and cast vinyl for Kenyan climate." },
-              { icon: Wrench, title: "FULL INSTALLATION", desc: "Turnkey service: site measurement, production, and safe mount." },
-              { icon: Zap, title: "FAST QUOTES", desc: "Transparent pricing over WhatsApp within hours." },
-              { icon: Award, title: "BRAND CONSISTENCY", desc: "Every sign reflects the high standards of your business." }
+              { icon: Settings,      title: "CUSTOM FABRICATION",    desc: "Built to your exact specs and pantone color palettes." },
+              { icon: Ruler,         title: "PRECISION FIT",          desc: "Laser cutting, routering, and seamless corner assembly." },
+              { icon: Layers,        title: "WEATHERPROOF MATERIALS", desc: "Alucobond, UV-treated acrylic, and cast vinyl for Kenyan climate." },
+              { icon: Wrench,        title: "FULL INSTALLATION",      desc: "Turnkey service: site measurement, production, and safe mount." },
+              { icon: Zap,           title: "FAST QUOTES",            desc: "Transparent pricing over WhatsApp within hours." },
+              { icon: Award,         title: "BRAND CONSISTENCY",      desc: "Every sign reflects the high standards of your business." },
             ].map((feature, i) => {
               const Icon = feature.icon;
               return (
@@ -595,10 +705,10 @@ export default function Home() {
             <Award size={32} />
           </div>
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
-            READY TO MAKE YOUR BRAND IMPOSSIBLE TO MISS?
+            READY TO OWN YOUR STREET AND YOUR GOOGLE SEARCH?
           </h2>
           <p className="text-lg text-gray-400 mb-10 leading-relaxed">
-            Tell us about your space, storefront, or fleet. We will recommend the right materials and provide a fast, comprehensive quote.
+            Tell us about your business. Whether you need a sign, a wrap, a full rebrand, or a website — we will make your brand impossible to miss, online and offline.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

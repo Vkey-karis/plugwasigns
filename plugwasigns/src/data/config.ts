@@ -1,4 +1,4 @@
-﻿export const BUSINESS_CONFIG = {
+export const BUSINESS_CONFIG = {
   name: "PlugWaSigns",
   tagline: "WE MAKE YOUR BRAND IMPOSSIBLE TO MISS.",
   phone: "+254 794 867 579",
@@ -16,6 +16,7 @@
 export const NAVIGATION = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Websites", href: "/websites" },
   { label: "Our Work", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" }
