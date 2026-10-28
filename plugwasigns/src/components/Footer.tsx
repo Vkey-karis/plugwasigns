@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { BUSINESS_CONFIG, NAVIGATION } from "../data/config";
-import { SERVICES } from "../data/services";
+import { usePortfolio } from "../context/PortfolioContext";
+import { formatCategoryTitle } from "../data/services";
 import { Globe, Link2, MessageCircle, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { categories } = usePortfolio();
 
   return (
     <footer
@@ -44,7 +46,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Links */}
+          {/* Company Links */}
           <div>
             <h4 className="text-white font-bold mb-6 font-display tracking-widest text-sm flex items-center gap-2">
               <span className="w-3 h-0.5 bg-blue inline-block rounded-full" />
@@ -61,20 +63,31 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Dynamic Categories / Services */}
           <div>
             <h4 className="text-white font-bold mb-6 font-display tracking-widest text-sm flex items-center gap-2">
               <span className="w-3 h-0.5 bg-blue inline-block rounded-full" />
-              SERVICES
+              WHAT WE BUILD
             </h4>
-            <ul className="space-y-3">
-              {SERVICES.slice(0, 7).map(service => (
-                <li key={service.id}>
-                  <Link to={`/services/${service.id}`} className="text-gray-400 hover:text-accent transition-colors text-sm">
-                    {service.title}
+            <ul className="space-y-2.5">
+              {categories.slice(0, 8).map(cat => (
+                <li key={cat}>
+                  <Link 
+                    to={`/portfolio?category=${encodeURIComponent(cat)}`} 
+                    className="text-gray-400 hover:text-accent transition-colors text-sm flex items-center gap-1.5"
+                  >
+                    <span className="w-1 h-1 bg-accent/60 rounded-full" />
+                    {formatCategoryTitle(cat)}
                   </Link>
                 </li>
               ))}
+              {categories.length > 8 && (
+                <li>
+                  <Link to="/portfolio" className="text-xs font-bold text-accent hover:underline inline-block pt-1">
+                    + View all categories →
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -114,12 +127,12 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-blue/15 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600">
+        <div className="border-t border-blue/15 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
           <p>&copy; {currentYear} {BUSINESS_CONFIG.name}. All rights reserved.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link to="#" className="hover:text-gray-400 transition-colors">Privacy Policy</Link>
-            <Link to="#" className="hover:text-gray-400 transition-colors">Terms of Service</Link>
-            <Link to="/admin" className="hover:text-accent transition-colors font-mono text-[11px]">Admin</Link>
+          <div className="flex space-x-6 mt-4 md:mt-0 items-center">
+            <Link to="/portfolio" className="hover:text-gray-300 transition-colors">Our Work</Link>
+            <Link to="/contact" className="hover:text-gray-300 transition-colors">Contact</Link>
+            <Link to="/admin" className="hover:text-accent transition-colors font-mono text-[11px] px-2 py-0.5 rounded bg-white/5 border border-white/10">Admin Portal</Link>
           </div>
         </div>
       </div>
