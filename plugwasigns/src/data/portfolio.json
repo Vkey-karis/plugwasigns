@@ -6,13 +6,16 @@
     "BRANDING",
     "VEHICLE",
     "LED",
-    "SHOP SIGNS",
+    "SIGNS",
     "APPAREL BRANDING",
     "PRINT",
     "DECOR",
     "BANNERS",
     "CAMPAIGN MERCHANDISE",
-    "ROLLUP BANNERS/ TEARDROP"
+    "ROLLUP BANNERS/ TEARDROP",
+    "PRIVACY FENCE",
+    "RECEIPT BOOKS",
+    "WALL MURALS & WALLPAPERS"
   ],
   "categoryImages": {
     "2D": "/work/gentry-spa.jpg",
@@ -21,14 +24,14 @@
     "BRANDING": "/work/raffine-board.png",
     "VEHICLE": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80",
     "LED": "/work/neon-cocktail.jpg",
-    "SHOP SIGNS": "/work/raffine-sign.png",
     "APPAREL": "/work/apparel-hoodie-2.jpg",
-    "PRINT": "/work/eulogy-program.png",
+    "APPAREL BRANDING": "/work/apparel-hoodie-1.png",
+    "CAMPAIGN MERCHANDISE": "/work/apparel-uda-political-tshirt.jpeg",
+    "ROLLUP BANNERS/ TEARDROP": "/work/teardrop-banners.png",
+    "PRINT": "/work/branded-bottles.png",
     "DECOR": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80",
     "BANNERS": "/work/teardrop-banners.png",
-    "APPAREL BRANDING": "/work/apparel-hoodie-2.jpg",
-    "CAMPAIGN MERCHANDISE": "/work/apparel-uda-political-tshirt.jpeg",
-    "ROLLUP BANNERS/ TEARDROP": "/work/teardrop-banners.png"
+    "SIGNS": "/work/3d-circular-led-sign.jpeg"
   },
   "items": [
     {
