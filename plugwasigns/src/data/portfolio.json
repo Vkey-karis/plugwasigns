@@ -23,7 +23,7 @@
     "3D": "/work/dazzle-3d.jpg",
     "STICKERS": "/work/reflective-exit-signs.png",
     "BRANDING": "/work/raffine-board.png",
-    "VEHICLE": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80",
+    "VEHICLE": "/work/3d-golden-led-sign.jpeg",
     "LED": "/work/neon-cocktail.jpg",
     "APPAREL": "/work/apparel-hoodie-2.jpg",
     "APPAREL BRANDING": "/work/apparel-hoodie-1.png",
@@ -456,7 +456,7 @@
         "3D Signage"
       ],
       "isHero": false,
-      "isFeatured": false,
+      "isFeatured": true,
       "priority": 0
     },
     {
