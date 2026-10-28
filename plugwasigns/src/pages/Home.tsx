@@ -22,12 +22,13 @@ const TRUST_BRANDS = [
 ];
 
 const FLOATING_BADGES = [
-  { label: 'LED Signs',     Icon: Lightbulb, style: { top: '6%',    left: '2%'   }, delay: 0   },
-  { label: '3D Letters',    Icon: Box,       style: { top: '10%',   right: '2%'  }, delay: 0.4 },
-  { label: 'Vehicle Wraps', Icon: Car,       style: { top: '44%',   left: '-2%'  }, delay: 0.8 },
-  { label: 'Branding',      Icon: PenTool,   style: { top: '42%',   right: '-2%' }, delay: 1.2 },
-  { label: 'Stickers',      Icon: Stamp,     style: { bottom: '14%',left: '4%'   }, delay: 1.6 },
-  { label: '2D Signage',    Icon: Layout,    style: { bottom: '16%',right: '2%'  }, delay: 2.0 },
+  { label: 'LED Signs',     Icon: Lightbulb, href: '/portfolio?category=LED',      style: { top: '6%',    left: '2%'   }, delay: 0   },
+  { label: '3D Letters',    Icon: Box,       href: '/portfolio?category=3D',       style: { top: '8%',    right: '2%'  }, delay: 0.3 },
+  { label: 'Websites',      Icon: Globe,     href: '/websites',                    style: { top: '34%',   right: '-4%' }, delay: 0.6, isSpecial: true },
+  { label: 'Vehicle Wraps', Icon: Car,       href: '/portfolio?category=VEHICLE',  style: { top: '44%',   left: '-2%'  }, delay: 0.9 },
+  { label: 'Branding',      Icon: PenTool,   href: '/portfolio?category=BRANDING', style: { top: '60%',   right: '-2%' }, delay: 1.2 },
+  { label: 'Stickers',      Icon: Stamp,     href: '/portfolio?category=STICKERS', style: { bottom: '14%',left: '4%'   }, delay: 1.5 },
+  { label: '2D Signage',    Icon: Layout,    href: '/portfolio?category=2D',       style: { bottom: '14%',right: '2%'  }, delay: 1.8 },
 ];
 
 const FALLBACK_SAMPLE_IMAGES = [
@@ -276,10 +277,10 @@ export default function Home() {
             </motion.div>
 
             {/* Floating service badges (Hidden on smaller screens to avoid overlap) */}
-            {FLOATING_BADGES.map(({ label, Icon, style, delay }, i) => (
+            {FLOATING_BADGES.map(({ label, Icon, href, style, delay, isSpecial }, i) => (
               <motion.div
                 key={label}
-                className="hidden xl:flex absolute z-20 bg-primary-light/95 backdrop-blur-md border border-white/15 rounded-xl px-3 py-2 text-xs font-bold items-center gap-2 shadow-2xl"
+                className="hidden xl:flex absolute z-20 cursor-pointer"
                 style={style}
                 whileHover={{ scale: 1.12 }}
                 initial={{ opacity: 0, scale: 0.7 }}
@@ -294,8 +295,18 @@ export default function Home() {
                   y: { repeat: Infinity, duration: 3 + i * 0.5, delay, ease: 'easeInOut' },
                 }}
               >
-                <Icon size={12} className="text-accent" />
-                {label}
+                <Link
+                  to={href}
+                  className={`backdrop-blur-md rounded-xl px-3.5 py-2 text-xs font-bold flex items-center gap-2 shadow-2xl transition-all duration-300 group ${
+                    isSpecial
+                      ? 'bg-blue/20 border border-blue/50 text-blue-light hover:border-accent hover:text-accent shadow-[0_0_20px_rgba(37,71,216,0.3)]'
+                      : 'bg-primary-light/95 border border-white/15 text-white hover:border-accent hover:text-accent'
+                  }`}
+                  title={`View ${label}`}
+                >
+                  <Icon size={12} className={isSpecial ? "text-blue-light group-hover:text-accent" : "text-accent"} />
+                  <span>{label}</span>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
