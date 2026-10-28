@@ -89,7 +89,7 @@
         "Design"
       ],
       "isHero": true,
-      "isFeatured": false,
+      "isFeatured": true,
       "priority": 7
     },
     {
