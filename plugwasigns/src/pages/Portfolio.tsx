@@ -22,6 +22,7 @@ export default function Portfolio() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const activePillRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (categoryParam) {
@@ -31,6 +32,20 @@ export default function Portfolio() {
       }
     }
   }, [categoryParam, allDisplayCategories]);
+
+  // Auto-scroll the active filter pill into the center of the ribbon
+  useEffect(() => {
+    const pill = activePillRef.current;
+    const container = scrollContainerRef.current;
+    if (!pill || !container) return;
+    const pillLeft = pill.offsetLeft;
+    const pillWidth = pill.offsetWidth;
+    const containerWidth = container.offsetWidth;
+    container.scrollTo({
+      left: pillLeft - containerWidth / 2 + pillWidth / 2,
+      behavior: 'smooth',
+    });
+  }, [filter]);
 
   const handleSelectFilter = (cat: string) => {
     setFilter(cat);
@@ -42,13 +57,13 @@ export default function Portfolio() {
   };
 
   const filteredProjects = useMemo(() => {
-    let list = filter === 'ALL' 
-      ? portfolioItems 
+    let list = filter === 'ALL'
+      ? portfolioItems
       : portfolioItems.filter(p => p.category.toUpperCase() === filter.toUpperCase());
 
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
-      list = list.filter(p => 
+      list = list.filter(p =>
         p.title.toLowerCase().includes(q) ||
         p.category.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
@@ -109,17 +124,18 @@ export default function Portfolio() {
           </p>
         </div>
 
-        {/* Search & Filter Header Toolbar */}
-        <div className="space-y-6 mb-12">
+        {/* ── Sticky Search + Filter Toolbar ─────────────────────────────────── */}
+        <div className="sticky top-[72px] z-40 -mx-6 lg:-mx-12 px-6 lg:px-12 pb-4 pt-3 bg-primary/90 backdrop-blur-md border-b border-white/5 mb-10 space-y-3">
+
           {/* Instant Search Bar */}
           <div className="relative max-w-md">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
             <input
               type="text"
-              placeholder="Search signs e.g. 3D, salon, pharmacy, banner, gold letters..."
+              placeholder="Search e.g. 3D, salon, pharmacy, banner, gold letters..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-primary-light border border-white/10 rounded-full pl-11 pr-10 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
+              className="w-full bg-primary-light border border-white/10 rounded-full pl-11 pr-10 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-accent transition-colors"
             />
             {searchQuery && (
               <button
@@ -131,30 +147,37 @@ export default function Portfolio() {
             )}
           </div>
 
-          {/* Horizontally Scrollable Category Filter Ribbon (Fade edges on mobile) */}
+          {/* Horizontally Scrollable Category Filter Ribbon with fade edges */}
           <div className="relative">
-            <div 
+            {/* Left fade */}
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-10 bg-gradient-to-r from-primary to-transparent z-10" />
+            {/* Right fade */}
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-primary to-transparent z-10" />
+
+            <div
               ref={scrollContainerRef}
-              className="flex items-center gap-2.5 overflow-x-auto no-scrollbar py-1 scroll-smooth"
+              className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 px-1 scroll-smooth"
             >
               {allDisplayCategories.map(cat => {
-                const count = cat === 'ALL' 
-                  ? portfolioItems.length 
+                const isActive = filter === cat;
+                const count = cat === 'ALL'
+                  ? portfolioItems.length
                   : portfolioItems.filter(i => i.category.toUpperCase() === cat.toUpperCase()).length;
 
                 return (
                   <button
                     key={cat}
+                    ref={isActive ? activePillRef : null}
                     onClick={() => handleSelectFilter(cat)}
                     className={`px-4 py-2 rounded-full text-xs font-bold tracking-wider transition-all whitespace-nowrap shrink-0 border flex items-center gap-1.5 ${
-                      filter === cat 
-                        ? 'bg-accent text-black border-accent shadow-[0_0_15px_rgba(227,255,0,0.3)]' 
+                      isActive
+                        ? 'bg-accent text-black border-accent shadow-[0_0_15px_rgba(227,255,0,0.35)]'
                         : 'bg-primary-light/60 text-gray-400 border-white/10 hover:border-white/30 hover:text-white'
                     }`}
                   >
                     <span>{cat}</span>
-                    <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      filter === cat ? 'bg-black/20 text-black' : 'bg-white/10 text-gray-400'
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                      isActive ? 'bg-black/20 text-black' : 'bg-white/10 text-gray-400'
                     }`}>
                       {count}
                     </span>
@@ -169,7 +192,7 @@ export default function Portfolio() {
             <div className="text-sm text-gray-400 flex items-center gap-2">
               <Filter size={14} className="text-accent" />
               Showing results for &quot;<span className="text-white font-bold">{searchQuery}</span>&quot;
-              <button 
+              <button
                 onClick={() => setSearchQuery('')}
                 className="text-xs text-accent hover:underline ml-2"
               >
@@ -217,9 +240,9 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    <img 
-                      src={project.image} 
-                      alt={project.title} 
+                    <img
+                      src={project.image}
+                      alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
@@ -255,7 +278,7 @@ export default function Portfolio() {
       {/* Lightbox / Project Detail Modal with Next / Prev Navigation */}
       <AnimatePresence>
         {selectedProject && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -286,14 +309,14 @@ export default function Portfolio() {
               </button>
             )}
 
-            <motion.div 
+            <motion.div
               initial={{ y: 30, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 30, opacity: 0, scale: 0.98 }}
               className="bg-primary border border-white/15 w-full max-w-5xl rounded-3xl overflow-hidden flex flex-col md:flex-row relative max-h-[92vh] shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
-              <button 
+              <button
                 className="absolute top-4 right-4 z-20 bg-black/60 hover:bg-accent text-white hover:text-black p-2.5 rounded-full transition-colors border border-white/10"
                 onClick={() => setSelectedProject(null)}
                 title="Close (Esc)"
@@ -302,9 +325,9 @@ export default function Portfolio() {
               </button>
 
               <div className="w-full md:w-3/5 h-[42vh] md:h-auto bg-black relative flex items-center justify-center overflow-hidden">
-                <img 
-                  src={selectedProject.image} 
-                  alt={selectedProject.title} 
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
                   className="w-full h-full object-contain md:object-cover"
                 />
                 {/* Counter indicator */}
@@ -345,7 +368,7 @@ export default function Portfolio() {
                 </div>
 
                 <div className="pt-6 border-t border-white/10 space-y-3">
-                  <a 
+                  <a
                     href={`https://wa.me/${BUSINESS_CONFIG.whatsapp}?text=Hi%20PlugWaSigns,%20I%20saw%20your%20${encodeURIComponent(selectedProject.title)}%20project%20and%20I'd%20like%20a%20quote%20for%20something%20similar.`}
                     target="_blank"
                     rel="noopener noreferrer"
