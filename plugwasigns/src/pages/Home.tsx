@@ -5,7 +5,7 @@ import {
   ArrowRight, CheckCircle2, ChevronRight, Box, Layout, Stamp, Car, Lightbulb, PenTool,
   Store, Building2, Package, Calendar, Settings, Ruler, Layers, Wrench, Zap, Palette
 } from 'lucide-react';
-import { SERVICES } from '../data/services';
+import { getCategoryServices } from '../data/services';
 import { usePortfolio } from '../context/PortfolioContext';
 import AnimatedSignText from '../components/AnimatedSignText';
 
@@ -31,7 +31,11 @@ const FALLBACK_SAMPLE_IMAGES = [
 ];
 
 export default function Home() {
-  const { items: portfolioItems } = usePortfolio();
+  const { items: portfolioItems, categories, categoryImages } = usePortfolio();
+
+  const categoryServices = useMemo(() => {
+    return getCategoryServices(categories, categoryImages, portfolioItems);
+  }, [categories, categoryImages, portfolioItems]);
 
   const heroItems = useMemo(() => {
     const heroes = portfolioItems.filter(p => p.isHero);
@@ -322,13 +326,13 @@ export default function Home() {
           </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service, index) => (
-              <Link to={`/services/${service.id}`} key={service.id} className="h-full">
+            {categoryServices.map((service, index) => (
+              <Link to={`/portfolio?category=${encodeURIComponent(service.category)}`} key={service.category} className="h-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: Math.min(index * 0.05, 0.4) }}
                   className="bg-primary border border-white/5 rounded-2xl hover:border-accent/50 transition-colors group h-full overflow-hidden flex flex-col"
                 >
                   {/* Service Image */}
@@ -340,14 +344,17 @@ export default function Home() {
                     />
                     {/* Accent overlay on hover */}
                     <div className="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 transition-colors duration-300" />
+                    <div className="absolute top-3 right-3 bg-primary/80 backdrop-blur-sm border border-white/10 px-2.5 py-1 rounded-full text-[11px] font-bold text-accent">
+                      {service.itemCount} {service.itemCount === 1 ? 'project' : 'projects'}
+                    </div>
                   </div>
 
                   {/* Text content */}
                   <div className="p-7 flex flex-col flex-1">
-                    <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                    <p className="text-gray-400 mb-5 flex-1">{service.shortDescription}</p>
+                    <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{service.title}</h3>
+                    <p className="text-gray-400 mb-5 flex-1 text-sm line-clamp-2">{service.shortDescription}</p>
                     <span className="inline-flex items-center text-sm font-bold text-accent">
-                      Explore <ChevronRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+                      View Work <ChevronRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </div>
                 </motion.div>

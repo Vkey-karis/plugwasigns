@@ -3,11 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Plus, Search, Star, Flame, Trash2, Edit3, Save, RefreshCw, Key, 
   ExternalLink, Check, AlertCircle, Eye, EyeOff, Lock, LogOut, ArrowUpDown, 
-  Tag, Layers, CheckSquare, Square, X, FolderPlus
+  Tag, Layers, CheckSquare, Square, X, FolderPlus, Image as ImageIcon, Camera, CheckCircle2
 } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
 import { type PortfolioItem } from '../data/portfolio';
 import { compressImageFile, type CompressedImageResult } from '../utils/imageCompressor';
+import { getCategoryImage } from '../data/services';
 
 const ADMIN_PASSWORD_KEY = 'plugwasigns_admin_auth_v1';
 const DEFAULT_PASSWORD = 'plugwa_admin';
@@ -16,6 +17,8 @@ export default function Admin() {
   const {
     items,
     categories,
+    categoryImages,
+    setCategoryImage,
     allDisplayCategories,
     hasDraftChanges,
     updateItem,
@@ -62,6 +65,9 @@ export default function Admin() {
   const [newCatInput, setNewCatInput] = useState('');
   const [editingCatOldName, setEditingCatOldName] = useState<string | null>(null);
   const [editingCatNewName, setEditingCatNewName] = useState('');
+  const [selectingCoverCat, setSelectingCoverCat] = useState<string | null>(null);
+  const [customCoverUrl, setCustomCoverUrl] = useState('');
+  const [coverPickerFilter, setCoverPickerFilter] = useState<'category' | 'all'>('category');
 
   // GitHub Publish State
   const [isPublishing, setIsPublishing] = useState(false);
@@ -815,6 +821,27 @@ export default function Admin() {
                     </button>
                   </div>
 
+                  {/* Category Cover Image Quick Setter */}
+                  <div>
+                    {categoryImages[item.category] === item.image ? (
+                      <div className="w-full bg-accent/15 border border-accent/40 rounded-lg py-1 px-2 text-[10px] text-accent font-bold flex items-center justify-center gap-1 shadow-sm">
+                        <CheckCircle2 size={11} className="text-accent" /> Cover for {item.category}
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCategoryImage(item.category, item.image);
+                        }}
+                        className="w-full bg-primary hover:bg-accent/10 border border-white/10 hover:border-accent/40 rounded-lg py-1 px-2 text-[10px] text-gray-400 hover:text-accent font-medium transition-colors flex items-center justify-center gap-1"
+                        title={`Set this photo as the display image for "${item.category}" on the What We Do page`}
+                      >
+                        <ImageIcon size={11} /> Set as {item.category} Cover
+                      </button>
+                    )}
+                  </div>
+
                   {/* Stepper & Actions */}
                   <div className="flex items-center justify-between pt-1">
                     <div className="flex items-center gap-1">
@@ -1009,6 +1036,7 @@ export default function Admin() {
                 {categories.map((cat) => {
                   const count = items.filter(i => i.category === cat).length;
                   const isEditing = editingCatOldName === cat;
+                  const coverImg = getCategoryImage(cat, categoryImages, items);
 
                   return (
                     <div
@@ -1040,16 +1068,40 @@ export default function Admin() {
                           </button>
                         </div>
                       ) : (
-                        <div className="flex items-center gap-2">
-                          <span className="font-bold text-white tracking-wider">{cat}</span>
-                          <span className="text-[10px] text-gray-500 bg-white/5 px-2 py-0.5 rounded-full">
-                            {count} {count === 1 ? 'item' : 'items'}
-                          </span>
+                        <div className="flex items-center gap-3 min-w-0">
+                          {/* Category Cover Preview thumbnail */}
+                          <button
+                            type="button"
+                            onClick={() => setSelectingCoverCat(cat)}
+                            className="relative w-10 h-10 rounded-lg overflow-hidden border border-white/20 hover:border-accent transition-all group/cover shrink-0 shadow"
+                            title="Click to select/change cover image for What We Do page"
+                          >
+                            <img src={coverImg} alt={cat} className="w-full h-full object-cover group-hover/cover:scale-105 transition-transform" />
+                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/cover:opacity-100 flex items-center justify-center text-accent">
+                              <Camera size={14} />
+                            </div>
+                          </button>
+
+                          <div className="min-w-0">
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold text-white tracking-wider truncate">{cat}</span>
+                              <span className="text-[10px] text-gray-500 bg-white/5 px-2 py-0.5 rounded-full shrink-0">
+                                {count} {count === 1 ? 'item' : 'items'}
+                              </span>
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => setSelectingCoverCat(cat)}
+                              className="text-[10px] text-accent hover:underline flex items-center gap-1 mt-0.5 transition-colors font-medium"
+                            >
+                              <ImageIcon size={10} /> Change cover image
+                            </button>
+                          </div>
                         </div>
                       )}
 
                       {!isEditing && (
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex items-center gap-1.5 shrink-0 ml-2">
                           <button
                             type="button"
                             onClick={() => {
@@ -1083,6 +1135,170 @@ export default function Admin() {
                   className="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-2 rounded-xl text-xs"
                 >
                   Done
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL: SELECT CATEGORY COVER IMAGE */}
+      <AnimatePresence>
+        {selectingCoverCat && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-primary-light border border-white/15 w-full max-w-2xl rounded-3xl p-6 md:p-8 flex flex-col max-h-[85vh]"
+            >
+              <div className="flex justify-between items-center mb-4 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2">
+                  <ImageIcon size={20} className="text-accent" />
+                  <div>
+                    <h2 className="text-xl font-display font-bold">
+                      Cover Image for <span className="text-accent">{selectingCoverCat}</span>
+                    </h2>
+                    <p className="text-xs text-gray-400 mt-0.5">
+                      This photo will represent {selectingCoverCat} on the "What We Do" and Services pages.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setSelectingCoverCat(null)}
+                  className="text-gray-400 hover:text-white text-xl"
+                >
+                  &times;
+                </button>
+              </div>
+
+              {/* Filter Tabs */}
+              <div className="flex items-center justify-between gap-2 mb-4">
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setCoverPickerFilter('category')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                      coverPickerFilter === 'category'
+                        ? 'bg-accent text-black'
+                        : 'bg-primary text-gray-400 hover:text-white border border-white/10'
+                    }`}
+                  >
+                    {selectingCoverCat} Photos ({items.filter(i => i.category === selectingCoverCat).length})
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setCoverPickerFilter('all')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-colors ${
+                      coverPickerFilter === 'all'
+                        ? 'bg-accent text-black'
+                        : 'bg-primary text-gray-400 hover:text-white border border-white/10'
+                    }`}
+                  >
+                    All Photos ({items.length})
+                  </button>
+                </div>
+
+                <span className="text-[11px] text-gray-400 hidden sm:inline">
+                  Click any photo to select
+                </span>
+              </div>
+
+              {/* Photo Grid */}
+              <div className="overflow-y-auto pr-1 flex-1 min-h-0 mb-4">
+                {(() => {
+                  const targetItems = coverPickerFilter === 'category'
+                    ? items.filter(i => i.category === selectingCoverCat)
+                    : items;
+
+                  if (targetItems.length === 0) {
+                    return (
+                      <div className="py-12 text-center text-gray-400 text-xs">
+                        No projects found in this category yet. Upload a project or switch to "All Photos".
+                      </div>
+                    );
+                  }
+
+                  const activeCover = getCategoryImage(selectingCoverCat, categoryImages, items);
+
+                  return (
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                      {targetItems.map(item => {
+                        const isCurrent = activeCover === item.image;
+                        return (
+                          <div
+                            key={item.id}
+                            onClick={() => {
+                              setCategoryImage(selectingCoverCat, item.image);
+                              setSelectingCoverCat(null);
+                            }}
+                            className={`group relative aspect-square rounded-xl overflow-hidden cursor-pointer border transition-all ${
+                              isCurrent
+                                ? 'ring-2 ring-accent border-accent shadow-[0_0_15px_rgba(227,255,0,0.3)]'
+                                : 'border-white/10 hover:border-white/40'
+                            }`}
+                          >
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-2 flex flex-col justify-between">
+                              <div className="flex justify-end">
+                                {isCurrent ? (
+                                  <span className="bg-accent text-black text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                                    CURRENT COVER
+                                  </span>
+                                ) : (
+                                  <span className="bg-black/60 text-white text-[9px] font-bold px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                                    Click to Pick
+                                  </span>
+                                )}
+                              </div>
+                              <span className="text-[10px] text-white font-medium line-clamp-1">
+                                {item.title}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+              </div>
+
+              {/* Custom Image URL Option */}
+              <div className="pt-3 border-t border-white/10 flex flex-col sm:flex-row gap-2 items-center justify-between">
+                <div className="flex gap-2 w-full sm:w-auto flex-1">
+                  <input
+                    type="text"
+                    placeholder="Or paste custom image URL (/work/... or https://...)"
+                    value={customCoverUrl}
+                    onChange={(e) => setCustomCoverUrl(e.target.value)}
+                    className="w-full bg-primary border border-white/15 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-accent"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (customCoverUrl.trim()) {
+                        setCategoryImage(selectingCoverCat, customCoverUrl.trim());
+                        setCustomCoverUrl('');
+                        setSelectingCoverCat(null);
+                      }
+                    }}
+                    className="bg-white/10 hover:bg-accent hover:text-black font-bold px-3 py-2 rounded-xl text-xs transition-colors shrink-0"
+                  >
+                    Apply URL
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setSelectingCoverCat(null)}
+                  className="bg-white/10 hover:bg-white/20 text-white font-bold px-5 py-2 rounded-xl text-xs w-full sm:w-auto"
+                >
+                  Close
                 </button>
               </div>
             </motion.div>

@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
-import { PORTFOLIO, DEFAULT_CATEGORIES, type PortfolioItem } from '../data/portfolio';
+import { 
+  PORTFOLIO, 
+  DEFAULT_CATEGORIES, 
+  DEFAULT_CATEGORY_IMAGES, 
+  CATEGORY_IMAGES, 
+  type PortfolioItem 
+} from '../data/portfolio';
 import { syncPortfolioToGitHub } from '../utils/githubSync';
 
 interface GitHubSettings {
@@ -15,12 +21,14 @@ interface NewImageUpload {
 
 interface LocalSavedPayload {
   categories?: string[];
+  categoryImages?: Record<string, string>;
   items?: PortfolioItem[];
 }
 
 interface PortfolioContextType {
   items: PortfolioItem[];
   categories: string[];
+  categoryImages: Record<string, string>;
   allDisplayCategories: string[];
   hasDraftChanges: boolean;
   updateItem: (id: string, updates: Partial<PortfolioItem>) => void;
@@ -31,6 +39,7 @@ interface PortfolioContextType {
   addCategory: (name: string) => boolean;
   removeCategory: (name: string) => boolean;
   renameCategory: (oldName: string, newName: string) => boolean;
+  setCategoryImage: (category: string, imageUrl: string) => void;
   resetToDefault: () => void;
   pendingNewImages: NewImageUpload[];
   publishToGitHub: (customCommitMessage?: string) => Promise<{ success: boolean; message: string; commitUrl?: string }>;
@@ -64,6 +73,21 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       console.warn('Could not load custom categories from localStorage', e);
     }
     return DEFAULT_CATEGORIES;
+  });
+
+  const [categoryImages, setCategoryImages] = useState<Record<string, string>>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (saved) {
+        const parsed: LocalSavedPayload = JSON.parse(saved);
+        if (parsed.categoryImages && typeof parsed.categoryImages === 'object') {
+          return { ...CATEGORY_IMAGES, ...parsed.categoryImages };
+        }
+      }
+    } catch (e) {
+      console.warn('Could not load custom categoryImages from localStorage', e);
+    }
+    return CATEGORY_IMAGES;
   });
 
   const [items, setItems] = useState<PortfolioItem[]>(() => {
@@ -100,13 +124,19 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     return DEFAULT_GITHUB_SETTINGS;
   });
 
-  const saveToLocalStorage = (updatedItems: PortfolioItem[], updatedCategories: string[]) => {
+  const saveToLocalStorage = (
+    updatedItems: PortfolioItem[], 
+    updatedCategories: string[], 
+    updatedCategoryImages: Record<string, string> = categoryImages
+  ) => {
     setItems(updatedItems);
     setCategories(updatedCategories);
+    setCategoryImages(updatedCategoryImages);
     setHasDraftChanges(true);
     try {
       const payload: LocalSavedPayload = {
         categories: updatedCategories,
+        categoryImages: updatedCategoryImages,
         items: updatedItems
       };
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(payload));
@@ -125,7 +155,13 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     if (newImage) {
       setPendingNewImages(prev => [...prev, newImage]);
     }
-    saveToLocalStorage(updated, categories);
+    // If the category didn't have an explicit image yet, set it
+    const upperCat = newItem.category.trim().toUpperCase();
+    let updatedImages = categoryImages;
+    if (!categoryImages[upperCat]) {
+      updatedImages = { ...categoryImages, [upperCat]: newItem.image };
+    }
+    saveToLocalStorage(updated, categories, updatedImages);
   };
 
   const deleteItem = (id: string) => {
@@ -150,7 +186,13 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const trimmed = name.trim().toUpperCase();
     if (!trimmed || categories.includes(trimmed)) return false;
     const updatedCategories = [...categories, trimmed];
-    saveToLocalStorage(items, updatedCategories);
+    // Find an existing image in portfolio for this category if any
+    const existing = items.find(i => i.category.trim().toUpperCase() === trimmed);
+    const updatedImages = {
+      ...categoryImages,
+      [trimmed]: existing ? existing.image : (DEFAULT_CATEGORY_IMAGES[trimmed] || '/work/dazzle-3d.jpg')
+    };
+    saveToLocalStorage(items, updatedCategories, updatedImages);
     return true;
   };
 
@@ -163,7 +205,9 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const updatedItems = items.map(item => 
       item.category === trimmed ? { ...item, category: fallbackCategory } : item
     );
-    saveToLocalStorage(updatedItems, updatedCategories);
+    const updatedImages = { ...categoryImages };
+    delete updatedImages[trimmed];
+    saveToLocalStorage(updatedItems, updatedCategories, updatedImages);
     return true;
   };
 
@@ -175,14 +219,29 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const updatedItems = items.map(item => 
       item.category === oldTrimmed ? { ...item, category: newTrimmed } : item
     );
-    saveToLocalStorage(updatedItems, updatedCategories);
+    const updatedImages = { ...categoryImages };
+    if (updatedImages[oldTrimmed]) {
+      updatedImages[newTrimmed] = updatedImages[oldTrimmed];
+      delete updatedImages[oldTrimmed];
+    }
+    saveToLocalStorage(updatedItems, updatedCategories, updatedImages);
     return true;
+  };
+
+  const setCategoryImage = (category: string, imageUrl: string) => {
+    const trimmed = category.trim().toUpperCase();
+    const updatedImages = {
+      ...categoryImages,
+      [trimmed]: imageUrl
+    };
+    saveToLocalStorage(items, categories, updatedImages);
   };
 
   const resetToDefault = () => {
     localStorage.removeItem(LOCAL_STORAGE_KEY);
     setItems(PORTFOLIO);
     setCategories(DEFAULT_CATEGORIES);
+    setCategoryImages(DEFAULT_CATEGORY_IMAGES);
     setHasDraftChanges(false);
     setPendingNewImages([]);
   };
@@ -206,9 +265,10 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         repo: githubSettings.repo || 'Vkey-karis/plugwasigns',
         branch: githubSettings.branch || 'main',
         categories,
+        categoryImages,
         items,
         newImages: pendingNewImages,
-        commitMessage: customCommitMessage || 'admin: update portfolio content & categories'
+        commitMessage: customCommitMessage || 'admin: update portfolio content & category images'
       });
 
       if (result.success) {
@@ -232,6 +292,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       value={{
         items,
         categories,
+        categoryImages,
         allDisplayCategories,
         hasDraftChanges,
         updateItem,
@@ -242,6 +303,7 @@ export const PortfolioProvider: React.FC<{ children: React.ReactNode }> = ({ chi
         addCategory,
         removeCategory,
         renameCategory,
+        setCategoryImage,
         resetToDefault,
         pendingNewImages,
         publishToGitHub,

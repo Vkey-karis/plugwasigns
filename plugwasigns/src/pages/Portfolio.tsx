@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowUpRight } from 'lucide-react';
 import { type PortfolioItem } from '../data/portfolio';
@@ -7,7 +8,34 @@ import { BUSINESS_CONFIG } from '../data/config';
 
 export default function Portfolio() {
   const { items: portfolioItems, allDisplayCategories } = usePortfolio();
-  const [filter, setFilter] = useState('ALL');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryParam = searchParams.get('category');
+
+  const [filter, setFilter] = useState(() => {
+    if (categoryParam) {
+      const match = allDisplayCategories.find(c => c.toUpperCase() === categoryParam.toUpperCase());
+      if (match) return match;
+    }
+    return 'ALL';
+  });
+
+  useEffect(() => {
+    if (categoryParam) {
+      const match = allDisplayCategories.find(c => c.toUpperCase() === categoryParam.toUpperCase());
+      if (match && match !== filter) {
+        setFilter(match);
+      }
+    }
+  }, [categoryParam, allDisplayCategories]);
+
+  const handleSelectFilter = (cat: string) => {
+    setFilter(cat);
+    if (cat === 'ALL') {
+      setSearchParams({});
+    } else {
+      setSearchParams({ category: cat });
+    }
+  };
   const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
 
   const filteredProjects = useMemo(() => {
@@ -30,7 +58,7 @@ export default function Portfolio() {
           {allDisplayCategories.map(cat => (
             <button
               key={cat}
-              onClick={() => setFilter(cat)}
+              onClick={() => handleSelectFilter(cat)}
               className={`px-5 py-2 rounded-full text-sm font-bold tracking-wider transition-colors border ${
                 filter === cat 
                   ? 'bg-accent text-black border-accent' 
